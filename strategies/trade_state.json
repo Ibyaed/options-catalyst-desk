@@ -1,0 +1,25 @@
+{
+  "active_trades": {
+    "ETH/USD": {
+      "entry_price": 2454.37,
+      "entry_time": "2026-09-05T07:32:27.575576-05:00",
+      "allocation": 2000.0,
+      "units": 0.8148730631485881
+    },
+    "SOL/USD": {
+      "entry_price": 103.41,
+      "entry_time": "2026-09-07T10:39:42.317391-05:00",
+      "allocation": 2000.0,
+      "units": 19.340489314379653
+    },
+    "BTC/USD": {
+      "entry_price": 78720.42,
+      "entry_time": "2026-09-08T13:26:36.079068-05:00",
+      "allocation": 2000.0,
+      "units": 0.025406368512769624
+    }
+  },
+  "circuit_breaker_until": null,
+  "manual_override": false,
+  "cumulative_realized_pnl": 147.90000421365175
+}

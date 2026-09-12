@@ -1,0 +1,17 @@
+{
+  "name": "Trading Agent Sandbox",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "saoudrizwan.claude-dev",
+        "ms-python.python"
+      ],
+      "settings": {
+        "cline.apiProvider": "ollama",
+        "cline.ollamaModelId": "qwen2.5-coder:7b",
+        "cline.ollamaBaseUrl": "http://host.docker.internal:11434"
+      }
+    }
+  }
+}

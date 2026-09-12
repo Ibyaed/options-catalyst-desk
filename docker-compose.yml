@@ -1,0 +1,27 @@
+services:
+  # 1. Local LLM Service (Ollama tuned for 16GB RAM + CPU/APU)
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama-brain
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_models:/root/.ollama
+
+  # 2. Python Algo & Backtesting Sandbox
+  quant-sandbox:
+    build:
+      context: ./sandbox
+      dockerfile: Dockerfile
+    container_name: quant-sandbox
+    restart: unless-stopped
+    volumes:
+      - ./strategies:/app/strategies
+      - ./obsidian_vault:/app/vault
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: tail -f /dev/null
+
+volumes:
+  ollama_models:
