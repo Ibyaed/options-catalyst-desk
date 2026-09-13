@@ -85,12 +85,12 @@ def run_simulation_cycle():
 
             if curr_price >= tp_target_price:
                 state["cumulative_realized_pnl"] += pnl_dollars
-                log_audit_event("TAKE-PROFIT HIT (+20% Target)", f"Closed {symbol} at \({curr_price:,.2f} | Realized:\){pnl_dollars:+,.2f} USD")
+                log_audit_event("TAKE-PROFIT HIT (+20% Target)", f"Closed {symbol} at ({curr_price:,.2f} | Realized:){pnl_dollars:+,.2f} USD")
                 del active_trades[symbol]
                 continue
             elif curr_price <= sl_target_price:
                 state["cumulative_realized_pnl"] += pnl_dollars
-                log_audit_event("STOP-LOSS HIT (Invalidation)", f"Cut {symbol} at \({curr_price:,.2f} | Realized:\){pnl_dollars:+,.2f} USD")
+                log_audit_event("STOP-LOSS HIT (Invalidation)", f"Cut {symbol} at ({curr_price:,.2f} | Realized:){pnl_dollars:+,.2f} USD")
                 del active_trades[symbol]
                 continue
 
@@ -98,7 +98,7 @@ def run_simulation_cycle():
             total_unrealized_pnl += pnl_dollars
 
             table_rows.append(
-                f"| {symbol} | \({invested_total:,.2f} |\){position_value:,.2f} | {growth_pct:+.2f}% | \({pnl_dollars:+,.2f} |\){avg_entry:,.2f} | \({curr_price:,.2f} | {time_mil} CST |\){tp_target_price:,.2f} |"
+                f"| {symbol} | ({invested_total:,.2f} |){position_value:,.2f} | {growth_pct:+.2f}% | ({pnl_dollars:+,.2f} |){avg_entry:,.2f} | ({curr_price:,.2f} | {time_mil} CST |){tp_target_price:,.2f} |"
             )
         else:
             table_rows.append(
