@@ -1,4 +1,4 @@
-# 🎯 Multi-Asset Trade Simulator Dashboard
+# 🎯 Options Momentum Trade Simulator
 
 ```button
 name 🔄 Refresh Prices Now
@@ -7,19 +7,20 @@ action Shell Commands: Execute Trade Simulator
 class button-refresh
 ```
 
-- **Run Timestamp:** 2026-09-09 2202 Hours CDT (Source: Google Finance)
-- **Total Principal Deposited:** $6,000.00 USD (+$150/week DCA)
-- **Current Portfolio Valuation:** $3,991.54 USD
+- **Run Timestamp:** 2026-09-12 1935 Hours CDT
+- **Target Call Return:** +20% Daily
+- **Current Portfolio Valuation:** $0.00 USD
 - **Cumulative Realized PnL:** $-41.42 USD
-- **Current Unrealized PnL:** $-8.46 USD
-- **Total Portfolio Growth (ROI):** -34.16%
-- **Risk Rules:** Target Profit = +5% / Stop Loss = -2% on allocated capital
+- **Current Unrealized PnL:** $+0.00 USD
+- **Total Portfolio Growth (ROI):** -100.69%
 
-> ⛔ **CIRCUIT BREAKER ACTIVE:** System halted until **2026-09-10 0508 Hours UTC-05:00** due to -2% stop-loss. Set `manual_override: true` in `trade_state.json` to resume early.
+🟢 **Options Catalyst Desk Active:** Monitoring 5m Elliott Wave 3 Breakouts.
 
-### Active Positions & Growth
-| Asset | Invested Total | Position Value | Asset Growth | Unrealized PnL | Avg Entry | Current Price | Last Check | TP Target (+5%) |
+### Monitored Contracts & Active Positions
+| Asset | Invested Total | Position Value | Asset Growth | Unrealized PnL | Avg Entry | Current Price | Last Check | TP Target (Calls) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| BTC/USD | $2,000.00 | $1,998.30 | -0.09% | $-1.70 | $78,444.71 | $78,377.92 | 2202 CST | $82,366.95 |
-| ETH/USD | $2,000.00 | $1,993.24 | -0.34% | $-6.76 | $2,483.74 | $2,475.35 | 2202 CST | $2,607.93 |
-| SOL/USD | $0.00 | $0.00 | 0.00% | $0.00 | — | $101.88 | 2202 CST | — |
+| SPY | $0.00 | $0.00 | 0.00% | $0.00 | — | $764.29 | 1935 CST | — |
+| QQQ | $0.00 | $0.00 | 0.00% | $0.00 | — | $714.88 | 1935 CST | — |
+| NVDA | $0.00 | $0.00 | 0.00% | $0.00 | — | $218.29 | 1935 CST | — |
+| TSLA | $0.00 | $0.00 | 0.00% | $0.00 | — | $365.44 | 1935 CST | — |
+| AAPL | $0.00 | $0.00 | 0.00% | $0.00 | — | $332.27 | 1935 CST | — |
