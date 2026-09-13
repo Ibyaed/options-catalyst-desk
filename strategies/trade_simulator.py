@@ -1,4 +1,4 @@
-import os
+﻿import os
 import json
 import datetime
 from zoneinfo import ZoneInfo
@@ -102,22 +102,25 @@ def run_simulation_cycle():
             )
         else:
             table_rows.append(
-                f"| {symbol} | $0.00 | $0.00 | 0.00% | $0.00 | — | ${curr_price:,.2f} | {time_mil} CST | — |"
+                f"| {symbol} | $0.00 | $0.00 | 0.00% | $0.00 | â€” | ${curr_price:,.2f} | {time_mil} CST | â€” |"
             )
 
     state["active_trades"] = active_trades
     save_state(state)
 
-    total_deposited = float(state.get("total_deposited_cash", 6000.0))
+        total_deposited = float(state.get("total_deposited_cash", 6000.0))
     cum_realized = float(state.get("cumulative_realized_pnl", 0.0))
-    net_portfolio_roi = ((portfolio_valuation + cum_realized - total_deposited) / total_deposited) * 100 if total_deposited > 0 else 0.0
+    invested_cash = sum(float(pos["allocation"]) for pos in active_trades.values())
+    unallocated_cash = total_deposited - invested_cash
+    current_equity = unallocated_cash + portfolio_valuation + cum_realized
+    net_portfolio_roi = ((current_equity - total_deposited) / total_deposited) * 100 if total_deposited > 0 else 0.0
 
-    status_banner = "🟢 **Options Catalyst Desk Active:** Monitoring 5m Elliott Wave 3 Breakouts."
+    status_banner = "ðŸŸ¢ **Options Catalyst Desk Active:** Monitoring 5m Elliott Wave 3 Breakouts."
 
     table_body = "\n".join(table_rows)
-    btn_block = "```button\nname 🔄 Refresh Prices Now\ntype command\naction Shell Commands: Execute Trade Simulator\nclass button-refresh\n```"
+    btn_block = "```button\nname ðŸ”„ Refresh Prices Now\ntype command\naction Shell Commands: Execute Trade Simulator\nclass button-refresh\n```"
 
-    report = f"""# 🎯 Options Momentum Trade Simulator
+    report = f"""# ðŸŽ¯ Options Momentum Trade Simulator
 
 {btn_block}
 
@@ -143,3 +146,4 @@ def run_simulation_cycle():
 
 if __name__ == "__main__":
     run_simulation_cycle()
+
