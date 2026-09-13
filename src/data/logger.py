@@ -1,5 +1,6 @@
 import os
 import datetime
+import subprocess
 from zoneinfo import ZoneInfo
 from src.config import TRACKED_TICKERS, LOGS_DIR
 from src.data.candles import CandleManager
@@ -22,7 +23,6 @@ def generate_daily_obsidian_log():
         refs = manager.get_reference_levels(sym)
         analysis = detect_regime_and_bias(df, refs)
 
-        # Pre-format numeric variables to avoid f-string syntax collisions
         price_str = f"${analysis['current_price']:,.2f}" if analysis['current_price'] else "Awaiting Data"
         bull_str = f">${analysis['bull_trigger']:,.2f}"
         bear_str = f">${analysis['bear_trigger']:,.2f}"
@@ -33,33 +33,25 @@ def generate_daily_obsidian_log():
 
     table_content = "\n".join(table_rows)
 
-    markdown_body = f"""# 🏛️ Options Catalyst Desk :: {date_str}
-
-- **Last Scan:** {timestamp_str}
-- **Monitored Universe:** {", ".join(TRACKED_TICKERS)}
-- **Cadence:** 5-Minute Intraday Engine (Central US)
-
-### Live Desk Board
-| Ticker | Price | Regime | Bias (0DTE/35DTE) | Bull Trigger | Bear Trigger | Key Notes |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-{table_content}
-
----
-*Generated autonomously by Options Catalyst Desk Engine.*
-"""
+    markdown_body = (
+        f"# 🏛️ Options Catalyst Desk :: {date_str}\n\n"
+        f"- **Last Scan:** {timestamp_str}\n"
+        f"- **Monitored Universe:** {', '.join(TRACKED_TICKERS)}\n"
+        f"- **Cadence:** 5-Minute Intraday Engine (Central US)\n\n"
+        f"### Live Desk Board\n"
+        f"| Ticker | Price | Regime | Bias (0DTE/35DTE) | Bull Trigger | Bear Trigger | Key Notes |\n"
+        f"| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n"
+        f"{table_content}\n\n"
+        f"---\n"
+        f"*Generated autonomously by Options Catalyst Desk Engine.*\n"
+    )
 
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(markdown_body)
     
     print(f"[{timestamp_str}] Successfully exported desk log to {file_path}")
 
-if __name__ == "__main__":
-    generate_daily_obsidian_log()
-    import subprocess
-import os
-
 def push_obsidian_updates():
-    # Grab the token you put into Render
     token = os.environ.get("GITHUB_TOKEN")
     if not token:
         print("No GitHub token found, skipping sync.")
@@ -77,4 +69,7 @@ def push_obsidian_updates():
         print("Successfully synced Obsidian updates to GitHub.")
     except subprocess.CalledProcessError as e:
         print(f"Git sync failed or no changes to push: {e}")
-        push_obsidian_updates()
+
+if __name__ == "__main__":
+    generate_daily_obsidian_log()
+    push_obsidian_updates()
