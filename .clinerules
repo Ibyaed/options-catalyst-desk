@@ -1,0 +1,18 @@
+# Cline Execution Rules
+
+CRITICAL: Every tool call must be on separate lines with no inline formatting.
+
+When running terminal commands, output EXACTLY this structure:
+<execute_command>
+<command>python strategies/ema_cross.py</command>
+</execute_command>
+
+When writing files:
+<write_to_file>
+<path>obsidian_vault/Daily_Runs/daily_market_check.md</path>
+<content>
+# Daily Market Check
+</content>
+</write_to_file>
+
+Never output markdown codeblocks around tags. Never put tags on a single line.

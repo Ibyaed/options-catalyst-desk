@@ -1,0 +1,20 @@
+{
+  "active_trades": {
+    "BTC/USD": {
+      "allocation": 2000.0,
+      "entry_price": 78444.71,
+      "units": 0.025495664398529867
+    },
+    "ETH/USD": {
+      "allocation": 2000.0,
+      "entry_price": 2483.74,
+      "units": 0.80523726315959
+    }
+  },
+  "circuit_breaker_until": "2026-09-10T05:08:32.520980-05:00",
+  "manual_override": false,
+  "cumulative_realized_pnl": -41.42069099003197,
+  "total_deposited_cash": 6000.0,
+  "weekly_deposit_amount": 150.0,
+  "last_deposit_date": "2026-09-08"
+}

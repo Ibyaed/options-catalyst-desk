@@ -1,0 +1,15 @@
+{
+  "settings": {},
+  "commands": [
+    {
+      "id": "9b7a0cab-276d-4c38-80cc-cb5afe73ca8e",
+      "command": "docker exec -i $(docker ps -q -f \"name=trading-agent-system\" -n 1) python /workspaces/trading-agent-system/strategies/trade_simulator.py",
+      "alias": "Execute Trade Simulator",
+      "events": {},
+      "output_handlers": {
+        "stdout": "ignore",
+        "stderr": "ignore"
+      }
+    }
+  ]
+}
