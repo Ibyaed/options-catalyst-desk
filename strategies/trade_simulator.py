@@ -85,12 +85,12 @@ def run_simulation_cycle():
 
             if curr_price >= tp_target_price:
                 state["cumulative_realized_pnl"] += pnl_dollars
-                log_audit_event("TAKE-PROFIT HIT (+20% Target)", f"Closed {symbol} at ({curr_price:,.2f} | Realized:){pnl_dollars:+,.2f} USD")
+                log_audit_event("TAKE-PROFIT HIT (+20% Target)", f"Closed {symbol} at \({curr_price:,.2f} | Realized:\){pnl_dollars:+,.2f} USD")
                 del active_trades[symbol]
                 continue
             elif curr_price <= sl_target_price:
                 state["cumulative_realized_pnl"] += pnl_dollars
-                log_audit_event("STOP-LOSS HIT (Invalidation)", f"Cut {symbol} at ({curr_price:,.2f} | Realized:){pnl_dollars:+,.2f} USD")
+                log_audit_event("STOP-LOSS HIT (Invalidation)", f"Cut {symbol} at \({curr_price:,.2f} | Realized:\){pnl_dollars:+,.2f} USD")
                 del active_trades[symbol]
                 continue
 
@@ -98,29 +98,29 @@ def run_simulation_cycle():
             total_unrealized_pnl += pnl_dollars
 
             table_rows.append(
-                f"| {symbol} | ({invested_total:,.2f} |){position_value:,.2f} | {growth_pct:+.2f}% | ({pnl_dollars:+,.2f} |){avg_entry:,.2f} | ({curr_price:,.2f} | {time_mil} CST |){tp_target_price:,.2f} |"
+                f"| {symbol} | \({invested_total:,.2f} |\){position_value:,.2f} | {growth_pct:+.2f}% | \({pnl_dollars:+,.2f} |\){avg_entry:,.2f} | \({curr_price:,.2f} | {time_mil} CST |\){tp_target_price:,.2f} |"
             )
         else:
             table_rows.append(
-                f"| {symbol} | $0.00 | $0.00 | 0.00% | $0.00 | â€” | ${curr_price:,.2f} | {time_mil} CST | â€” |"
+                f"| {symbol} | $0.00 | $0.00 | 0.00% | $0.00 | — | ${curr_price:,.2f} | {time_mil} CST | — |"
             )
 
     state["active_trades"] = active_trades
     save_state(state)
 
-        total_deposited = float(state.get("total_deposited_cash", 6000.0))
+    total_deposited = float(state.get("total_deposited_cash", 6000.0))
     cum_realized = float(state.get("cumulative_realized_pnl", 0.0))
     invested_cash = sum(float(pos["allocation"]) for pos in active_trades.values())
     unallocated_cash = total_deposited - invested_cash
     current_equity = unallocated_cash + portfolio_valuation + cum_realized
     net_portfolio_roi = ((current_equity - total_deposited) / total_deposited) * 100 if total_deposited > 0 else 0.0
 
-    status_banner = "ðŸŸ¢ **Options Catalyst Desk Active:** Monitoring 5m Elliott Wave 3 Breakouts."
+    status_banner = "🟢 **Options Catalyst Desk Active:** Monitoring 5m Elliott Wave 3 Breakouts."
 
     table_body = "\n".join(table_rows)
-    btn_block = "```button\nname ðŸ”„ Refresh Prices Now\ntype command\naction Shell Commands: Execute Trade Simulator\nclass button-refresh\n```"
+    btn_block = "```button\nname 🔄 Refresh Prices Now\ntype command\naction Shell Commands: Execute Trade Simulator\nclass button-refresh\n```"
 
-    report = f"""# ðŸŽ¯ Options Momentum Trade Simulator
+    report = f"""# 🎯 Options Momentum Trade Simulator
 
 {btn_block}
 
@@ -146,4 +146,3 @@ def run_simulation_cycle():
 
 if __name__ == "__main__":
     run_simulation_cycle()
-
