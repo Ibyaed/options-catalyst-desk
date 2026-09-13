@@ -55,3 +55,26 @@ def generate_daily_obsidian_log():
 
 if __name__ == "__main__":
     generate_daily_obsidian_log()
+    import subprocess
+import os
+
+def push_obsidian_updates():
+    # Grab the token you put into Render
+    token = os.environ.get("GITHUB_TOKEN")
+    if not token:
+        print("No GitHub token found, skipping sync.")
+        return
+
+    repo_url = f"https://{token}@github.com/Ibyaed/options-catalyst-desk.git"
+    
+    try:
+        subprocess.run(["git", "config", "--global", "user.email", "render-bot@options-desk.com"], check=True)
+        subprocess.run(["git", "config", "--global", "user.name", "Render Cloud Bot"], check=True)
+        subprocess.run(["git", "remote", "set-url", "origin", repo_url], check=True)
+        subprocess.run(["git", "add", "obsidian_vault/"], check=True)
+        subprocess.run(["git", "commit", "-m", "Auto-sync: Render updated Obsidian logs"], check=True)
+        subprocess.run(["git", "push", "origin", "main"], check=True)
+        print("Successfully synced Obsidian updates to GitHub.")
+    except subprocess.CalledProcessError as e:
+        print(f"Git sync failed or no changes to push: {e}")
+        push_obsidian_updates()
