@@ -1,0 +1,36 @@
+body {
+  background: #050814;
+  color: #e5f5ff;
+  font-family: system-ui, sans-serif;
+  margin: 0;
+}
+
+header {
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #1b2338;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  background: #1b2338;
+  color: #e5f5ff;
+  border: 1px solid #3b4a6a;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  padding: 1rem 2rem;
+}
+
+.card {
+  background: #0b1020;
+  border: 1px solid #1b2338;
+  padding: 1rem;
+  border-radius: 8px;
+}

@@ -1,0 +1,1146 @@
+{
+  "predictions": [
+    {
+      "id": "OKLO_1789138240",
+      "symbol": "OKLO",
+      "timestamp": 1789138240.520538,
+      "time_str": "2026-09-11 0950 Hours CDT",
+      "entry_price": 37.400001525878906,
+      "bias": "Puts (Intraday Breakdown)",
+      "bull_trigger": 39.72,
+      "bear_trigger": 36.98
+    },
+    {
+      "id": "NVO_1789139286",
+      "symbol": "NVO",
+      "timestamp": 1789139286.971394,
+      "time_str": "2026-09-11 1008 Hours CDT",
+      "entry_price": 42.875,
+      "bias": "Puts (Intraday Breakdown)",
+      "bull_trigger": 43.5,
+      "bear_trigger": 42.72
+    },
+    {
+      "id": "ORCL_1789139715",
+      "symbol": "ORCL",
+      "timestamp": 1789139715.666018,
+      "time_str": "2026-09-11 1015 Hours CDT",
+      "entry_price": 153.89999389648438,
+      "bias": "Stay Out / Iron Condor",
+      "bull_trigger": 165.9,
+      "bear_trigger": 150.55
+    },
+    {
+      "id": "OKLO_1789140941",
+      "symbol": "OKLO",
+      "timestamp": 1789140941.32883,
+      "time_str": "2026-09-11 1035 Hours CDT",
+      "entry_price": 37.04999923706055,
+      "bias": "Stay Out / Iron Condor",
+      "bull_trigger": 39.57,
+      "bear_trigger": 36.81
+    },
+    {
+      "id": "NVO_1789142022",
+      "symbol": "NVO",
+      "timestamp": 1789142022.315458,
+      "time_str": "2026-09-11 1053 Hours CDT",
+      "entry_price": 42.8661994934082,
+      "bias": "Stay Out / Iron Condor",
+      "bull_trigger": 44.1,
+      "bear_trigger": 42.72
+    },
+    {
+      "id": "ORCL_1789142420",
+      "symbol": "ORCL",
+      "timestamp": 1789142420.704357,
+      "time_str": "2026-09-11 1100 Hours CDT",
+      "entry_price": 153.15989685058594,
+      "bias": "Puts (Intraday Breakdown)",
+      "bull_trigger": 158.33,
+      "bear_trigger": 150.55
+    },
+    {
+      "id": "DELL_1789142745",
+      "symbol": "DELL",
+      "timestamp": 1789142745.851138,
+      "time_str": "2026-09-11 1105 Hours CDT",
+      "entry_price": 562.3400268554688,
+      "bias": "Stay Out / Iron Condor",
+      "bull_trigger": 567.75,
+      "bear_trigger": 536.7
+    },
+    {
+      "id": "OKLO_1789143641",
+      "symbol": "OKLO",
+      "timestamp": 1789143641.849014,
+      "time_str": "2026-09-11 1120 Hours CDT",
+      "entry_price": 36.93009948730469,
+      "bias": "Puts (Intraday Breakdown)",
+      "bull_trigger": 38.08,
+      "bear_trigger": 36.81
+    },
+    {
+      "id": "ORCL_1789145125",
+      "symbol": "ORCL",
+      "timestamp": 1789145125.643479,
+      "time_str": "2026-09-11 1145 Hours CDT",
+      "entry_price": 150.92999267578125,
+      "bias": "Stay Out / Iron Condor",
+      "bull_trigger": 154.4,
+      "bear_trigger": 150.41
+    },
+    {
+      "id": "DELL_1789145445",
+      "symbol": "DELL",
+      "timestamp": 1789145445.885093,
+      "time_str": "2026-09-11 1150 Hours CDT",
+      "entry_price": 557.3078002929688,
+      "bias": "Stay Out / Iron Condor",
+      "bull_trigger": 566.66,
+      "bear_trigger": 556.0
+    },
+    {
+      "id": "OKLO_1789146342",
+      "symbol": "OKLO",
+      "timestamp": 1789146342.132552,
+      "time_str": "2026-09-11 1205 Hours CDT",
+      "entry_price": 37.060001373291016,
+      "bias": "Stay Out / Iron Condor",
+      "bull_trigger": 37.52,
+      "bear_trigger": 36.81
+    },
+    {
+      "id": "SMR_1789146402",
+      "symbol": "SMR",
+      "timestamp": 1789146402.383565,
+      "time_str": "2026-09-11 1206 Hours CDT",
+      "entry_price": 8.774999618530273,
+      "bias": "Stay Out / Iron Condor",
+      "bull_trigger": 9.19,
+      "bear_trigger": 8.77
+    },
+    {
+      "id": "ORCL_1789147830",
+      "symbol": "ORCL",
+      "timestamp": 1789147830.389404,
+      "time_str": "2026-09-11 1230 Hours CDT",
+      "entry_price": 152.63499450683594,
+      "bias": "Stay Out / Iron Condor",
+      "bull_trigger": 154.4,
+      "bear_trigger": 150.41
+    },
+    {
+      "id": "OKLO_1789149101",
+      "symbol": "OKLO",
+      "timestamp": 1789149101.959452,
+      "time_str": "2026-09-11 1251 Hours CDT",
+      "entry_price": 37.0,
+      "bias": "Puts (Intraday Breakdown)",
+      "bull_trigger": 37.42,
+      "bear_trigger": 36.81
+    },
+    {
+      "id": "SMR_1789149162",
+      "symbol": "SMR",
+      "timestamp": 1789149162.043953,
+      "time_str": "2026-09-11 1252 Hours CDT",
+      "entry_price": 8.885000228881836,
+      "bias": "Stay Out / Iron Condor",
+      "bull_trigger": 8.98,
+      "bear_trigger": 8.77
+    },
+    {
+      "id": "SLS_1789149960",
+      "symbol": "SLS",
+      "timestamp": 1789149960.514455,
+      "time_str": "2026-09-11 1306 Hours CDT",
+      "entry_price": 11.60990047454834,
+      "bias": "Stay Out / Iron Condor",
+      "bull_trigger": 12.85,
+      "bear_trigger": 11.55
+    },
+    {
+      "id": "ORCL_1789150540",
+      "symbol": "ORCL",
+      "timestamp": 1789150540.404134,
+      "time_str": "2026-09-11 1315 Hours CDT",
+      "entry_price": 152.15499877929688,
+      "bias": "Stay Out / Iron Condor",
+      "bull_trigger": 154.19,
+      "bear_trigger": 150.41
+    },
+    {
+      "id": "NOK_1789151020",
+      "symbol": "NOK",
+      "timestamp": 1789151020.617054,
+      "time_str": "2026-09-11 1323 Hours CDT",
+      "entry_price": 11.085000038146973,
+      "bias": "Stay Out / Iron Condor",
+      "bull_trigger": 11.12,
+      "bear_trigger": 10.97
+    },
+    {
+      "id": "GME_1789151920",
+      "symbol": "GME",
+      "timestamp": 1789151920.990585,
+      "time_str": "2026-09-11 1338 Hours CDT",
+      "entry_price": 21.03499984741211,
+      "bias": "Calls (Breakout Expansion)",
+      "bull_trigger": 21.05,
+      "bear_trigger": 20.83
+    },
+    {
+      "id": "SLS_1789152664",
+      "symbol": "SLS",
+      "timestamp": 1789152664.977715,
+      "time_str": "2026-09-11 1351 Hours CDT",
+      "entry_price": 11.770000457763672,
+      "bias": "Stay Out / Iron Condor",
+      "bull_trigger": 12.82,
+      "bear_trigger": 11.38
+    },
+    {
+      "id": "ORCL_1789153245",
+      "symbol": "ORCL",
+      "timestamp": 1789153245.654717,
+      "time_str": "2026-09-11 1400 Hours CDT",
+      "entry_price": 151.47500610351562,
+      "bias": "Stay Out / Iron Condor",
+      "bull_trigger": 153.15,
+      "bear_trigger": 150.41
+    },
+    {
+      "id": "GME_1789154621",
+      "symbol": "GME",
+      "timestamp": 1789154621.088416,
+      "time_str": "2026-09-11 1423 Hours CDT",
+      "entry_price": 21.200000762939453,
+      "bias": "Calls (Breakout Expansion)",
+      "bull_trigger": 21.3,
+      "bear_trigger": 20.87
+    },
+    {
+      "id": "SLS_1789155370",
+      "symbol": "SLS",
+      "timestamp": 1789155370.302672,
+      "time_str": "2026-09-11 1436 Hours CDT",
+      "entry_price": 11.739899635314941,
+      "bias": "Stay Out / Iron Condor",
+      "bull_trigger": 12.61,
+      "bear_trigger": 11.38
+    },
+    {
+      "id": "TSLA_1789155947",
+      "symbol": "TSLA",
+      "timestamp": 1789155947.662443,
+      "time_str": "2026-09-11 1445 Hours CDT",
+      "entry_price": 366.06500244140625,
+      "bias": "Calls (Breakout Expansion)",
+      "bull_trigger": 366.55,
+      "bear_trigger": 364.0
+    },
+    {
+      "id": "SPCX_1789155947",
+      "symbol": "SPCX",
+      "timestamp": 1789155947.978997,
+      "time_str": "2026-09-11 1445 Hours CDT",
+      "entry_price": 151.61500549316406,
+      "bias": "Calls (Breakout Expansion)",
+      "bull_trigger": 151.85,
+      "bear_trigger": 148.79
+    },
+    {
+      "id": "NVDA_1789155948",
+      "symbol": "NVDA",
+      "timestamp": 1789155948.381656,
+      "time_str": "2026-09-11 1445 Hours CDT",
+      "entry_price": 218.77000427246094,
+      "bias": "Stay Out / Iron Condor",
+      "bull_trigger": 220.01,
+      "bear_trigger": 218.23
+    },
+    {
+      "id": "AMD_1789155948",
+      "symbol": "AMD",
+      "timestamp": 1789155948.693635,
+      "time_str": "2026-09-11 1445 Hours CDT",
+      "entry_price": 515.9000244140625,
+      "bias": "Stay Out / Iron Condor",
+      "bull_trigger": 518.63,
+      "bear_trigger": 513.35
+    },
+    {
+      "id": "NFLX_1789155949",
+      "symbol": "NFLX",
+      "timestamp": 1789155949.001202,
+      "time_str": "2026-09-11 1445 Hours CDT",
+      "entry_price": 77.5,
+      "bias": "Calls (Breakout Expansion)",
+      "bull_trigger": 77.54,
+      "bear_trigger": 76.97
+    },
+    {
+      "id": "ORCL_1789155949",
+      "symbol": "ORCL",
+      "timestamp": 1789155949.506937,
+      "time_str": "2026-09-11 1445 Hours CDT",
+      "entry_price": 150.5850067138672,
+      "bias": "Stay Out / Iron Condor",
+      "bull_trigger": 153.15,
+      "bear_trigger": 150.32
+    },
+    {
+      "id": "OKLO_1789157139",
+      "symbol": "OKLO",
+      "timestamp": 1789157139.508168,
+      "time_str": "2026-09-11 1505 Hours CDT",
+      "entry_price": 36.24,
+      "bias": "Bearish Puts / Debit Spread",
+      "bull_trigger": 36.6024,
+      "bear_trigger": 35.8776
+    },
+    {
+      "id": "GME_1789157331",
+      "symbol": "GME",
+      "timestamp": 1789157331.350435,
+      "time_str": "2026-09-11 1508 Hours CDT",
+      "entry_price": 21.16,
+      "bias": "Calls (Breakout Expansion)",
+      "bull_trigger": 21.3716,
+      "bear_trigger": 20.9484
+    },
+    {
+      "id": "SLS_1789158100",
+      "symbol": "SLS",
+      "timestamp": 1789158100.352077,
+      "time_str": "2026-09-11 1521 Hours CDT",
+      "entry_price": 11.55,
+      "bias": "Puts (Breakdown Trend)",
+      "bull_trigger": 11.665500000000002,
+      "bear_trigger": 11.4345
+    }
+  ],
+  "completed": [
+    {
+      "time": "2026-09-10 1945 Hours CDT",
+      "eval_time": "2046 Hours CDT",
+      "symbol": "TSLA",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 363.42,
+      "exit": 363.42,
+      "delta_pct": 0.0,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-10 1945 Hours CDT",
+      "eval_time": "2046 Hours CDT",
+      "symbol": "SPCX",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 147.7582,
+      "exit": 147.7582,
+      "delta_pct": 0.0,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-10 1945 Hours CDT",
+      "eval_time": "2046 Hours CDT",
+      "symbol": "NVDA",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 217.7579,
+      "exit": 217.7579,
+      "delta_pct": 0.0,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-10 1945 Hours CDT",
+      "eval_time": "2046 Hours CDT",
+      "symbol": "AMD",
+      "bias": "Puts (Intraday Breakdown)",
+      "entry": 502.0,
+      "exit": 502.0,
+      "delta_pct": 0.0,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-10 1945 Hours CDT",
+      "eval_time": "2046 Hours CDT",
+      "symbol": "NFLX",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 76.12,
+      "exit": 76.12,
+      "delta_pct": 0.0,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-10 1945 Hours CDT",
+      "eval_time": "2046 Hours CDT",
+      "symbol": "USO",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 158.38,
+      "exit": 158.38,
+      "delta_pct": 0.0,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-10 1945 Hours CDT",
+      "eval_time": "2046 Hours CDT",
+      "symbol": "GME",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 21.23,
+      "exit": 21.23,
+      "delta_pct": 0.0,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-10 1945 Hours CDT",
+      "eval_time": "2113 Hours CDT",
+      "symbol": "ORCL",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 159.26,
+      "exit": 159.26,
+      "delta_pct": 0.0,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-10 2014 Hours CDT",
+      "eval_time": "2114 Hours CDT",
+      "symbol": "SPY",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 757.83,
+      "exit": 757.8300170898438,
+      "delta_pct": 0.0,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-10 2030 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "TSLA",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 363.42,
+      "exit": 363.56,
+      "delta_pct": 0.04,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-10 2030 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "SPCX",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 147.7582,
+      "exit": 148.18,
+      "delta_pct": 0.29,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-10 2030 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "NVDA",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 217.7579,
+      "exit": 218.36,
+      "delta_pct": 0.28,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-10 2030 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "AMD",
+      "bias": "Puts (Intraday Breakdown)",
+      "entry": 502.0,
+      "exit": 503.6,
+      "delta_pct": 0.32,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-10 2030 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "NFLX",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 76.12,
+      "exit": 76.01,
+      "delta_pct": -0.14,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-10 2030 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "GME",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 21.23,
+      "exit": 21.23,
+      "delta_pct": 0.0,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-10 2030 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "USO",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 158.38,
+      "exit": 158.3800048828125,
+      "delta_pct": 0.0,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-10 2111 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "SPY",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 757.5286,
+      "exit": 757.8300170898438,
+      "delta_pct": 0.04,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-10 2111 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "ADBE",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 242.9754,
+      "exit": 242.98,
+      "delta_pct": 0.0,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-10 2112 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "ORCL",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 159.26,
+      "exit": 152.94,
+      "delta_pct": -3.97,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-10 2115 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "TSLA",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 363.42,
+      "exit": 363.56,
+      "delta_pct": 0.04,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-10 2115 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "SPCX",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 147.7582,
+      "exit": 148.18,
+      "delta_pct": 0.29,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-10 2115 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "NVDA",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 217.76,
+      "exit": 218.36,
+      "delta_pct": 0.28,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-10 2115 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "AMD",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 502.0159,
+      "exit": 503.6,
+      "delta_pct": 0.32,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-10 2115 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "NFLX",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 76.19,
+      "exit": 76.01,
+      "delta_pct": -0.24,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-10 2115 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "GME",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 21.23,
+      "exit": 21.23,
+      "delta_pct": 0.0,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 0800 Hours CDT",
+      "eval_time": "0900 Hours CDT",
+      "symbol": "TSLA",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 364.84,
+      "exit": 367.01,
+      "delta_pct": 0.59,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-11 0800 Hours CDT",
+      "eval_time": "0900 Hours CDT",
+      "symbol": "SPCX",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 150.1259,
+      "exit": 147.6122,
+      "delta_pct": -1.67,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-11 0800 Hours CDT",
+      "eval_time": "0900 Hours CDT",
+      "symbol": "NVDA",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 221.3877,
+      "exit": 220.05,
+      "delta_pct": -0.6,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 0800 Hours CDT",
+      "eval_time": "0900 Hours CDT",
+      "symbol": "AMD",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 513.21,
+      "exit": 510.87,
+      "delta_pct": -0.46,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-11 0800 Hours CDT",
+      "eval_time": "0900 Hours CDT",
+      "symbol": "NFLX",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 76.3845,
+      "exit": 76.6722,
+      "delta_pct": 0.38,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-11 0800 Hours CDT",
+      "eval_time": "0900 Hours CDT",
+      "symbol": "SPY",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 765.85,
+      "exit": 757.8300170898438,
+      "delta_pct": -1.05,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-11 0800 Hours CDT",
+      "eval_time": "0900 Hours CDT",
+      "symbol": "ORCL",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 164.05,
+      "exit": 156.17,
+      "delta_pct": -4.8,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-11 0800 Hours CDT",
+      "eval_time": "0900 Hours CDT",
+      "symbol": "QQQ",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 716.88,
+      "exit": 708.6900024414062,
+      "delta_pct": -1.14,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-11 0845 Hours CDT",
+      "eval_time": "0945 Hours CDT",
+      "symbol": "TSLA",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 367.1499938964844,
+      "exit": 366.405,
+      "delta_pct": -0.2,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 0845 Hours CDT",
+      "eval_time": "0945 Hours CDT",
+      "symbol": "SPCX",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 147.57000732421875,
+      "exit": 148.2,
+      "delta_pct": 0.43,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 0845 Hours CDT",
+      "eval_time": "0945 Hours CDT",
+      "symbol": "NVDA",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 220.01499938964844,
+      "exit": 221.11,
+      "delta_pct": 0.5,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 0845 Hours CDT",
+      "eval_time": "0945 Hours CDT",
+      "symbol": "AMD",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 511.20001220703125,
+      "exit": 520.01,
+      "delta_pct": 1.72,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 0845 Hours CDT",
+      "eval_time": "0945 Hours CDT",
+      "symbol": "NFLX",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 76.65589904785156,
+      "exit": 76.445,
+      "delta_pct": -0.28,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-11 0845 Hours CDT",
+      "eval_time": "0945 Hours CDT",
+      "symbol": "SPY",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 765.4500122070312,
+      "exit": 757.8300170898438,
+      "delta_pct": -1.0,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-11 0845 Hours CDT",
+      "eval_time": "0945 Hours CDT",
+      "symbol": "ORCL",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 156.91000366210938,
+      "exit": 151.0896,
+      "delta_pct": -3.71,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-11 0845 Hours CDT",
+      "eval_time": "0945 Hours CDT",
+      "symbol": "QQQ",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 715.969970703125,
+      "exit": 708.6900024414062,
+      "delta_pct": -1.02,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-11 0905 Hours CDT",
+      "eval_time": "1005 Hours CDT",
+      "symbol": "OKLO",
+      "bias": "Puts (Intraday Breakdown)",
+      "entry": 37.810001373291016,
+      "exit": 37.35,
+      "delta_pct": -1.22,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-11 0905 Hours CDT",
+      "eval_time": "1005 Hours CDT",
+      "symbol": "ADBE",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 246.33999633789062,
+      "exit": 248.23,
+      "delta_pct": 0.77,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-11 0907 Hours CDT",
+      "eval_time": "1007 Hours CDT",
+      "symbol": "AAPL",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 332.53509521484375,
+      "exit": 331.945,
+      "delta_pct": -0.18,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 0912 Hours CDT",
+      "eval_time": "1012 Hours CDT",
+      "symbol": "GME",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 21.204999923706055,
+      "exit": 21.16,
+      "delta_pct": -0.21,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 0930 Hours CDT",
+      "eval_time": "1030 Hours CDT",
+      "symbol": "TSLA",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 366.385009765625,
+      "exit": 366.06,
+      "delta_pct": -0.09,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-11 0930 Hours CDT",
+      "eval_time": "1030 Hours CDT",
+      "symbol": "SPCX",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 148.17999267578125,
+      "exit": 146.47,
+      "delta_pct": -1.15,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 0930 Hours CDT",
+      "eval_time": "1030 Hours CDT",
+      "symbol": "NVDA",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 221.55999755859375,
+      "exit": 219.96,
+      "delta_pct": -0.72,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-11 0930 Hours CDT",
+      "eval_time": "1030 Hours CDT",
+      "symbol": "AMD",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 520.0800170898438,
+      "exit": 514.2,
+      "delta_pct": -1.13,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-11 0930 Hours CDT",
+      "eval_time": "1030 Hours CDT",
+      "symbol": "NFLX",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 76.4800033569336,
+      "exit": 76.62,
+      "delta_pct": 0.18,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 0930 Hours CDT",
+      "eval_time": "1030 Hours CDT",
+      "symbol": "ORCL",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 153.83999633789062,
+      "exit": 152.92,
+      "delta_pct": -0.6,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 0932 Hours CDT",
+      "eval_time": "1032 Hours CDT",
+      "symbol": "BMNR",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 26.399999618530273,
+      "exit": 26.1799,
+      "delta_pct": -0.83,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 1015 Hours CDT",
+      "eval_time": "1115 Hours CDT",
+      "symbol": "SPCX",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 146.3800048828125,
+      "exit": 148.67999267578125,
+      "delta_pct": 1.57,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 1015 Hours CDT",
+      "eval_time": "1115 Hours CDT",
+      "symbol": "NVDA",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 219.76499938964844,
+      "exit": 219.40679931640625,
+      "delta_pct": -0.16,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 1015 Hours CDT",
+      "eval_time": "1115 Hours CDT",
+      "symbol": "AMD",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 513.1749877929688,
+      "exit": 514.0999755859375,
+      "delta_pct": 0.18,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 1015 Hours CDT",
+      "eval_time": "1115 Hours CDT",
+      "symbol": "NFLX",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 76.625,
+      "exit": 76.76000213623047,
+      "delta_pct": 0.18,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-11 1015 Hours CDT",
+      "eval_time": "1115 Hours CDT",
+      "symbol": "TSLA",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 365.6700134277344,
+      "exit": 364.8599853515625,
+      "delta_pct": -0.22,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-11 1100 Hours CDT",
+      "eval_time": "1200 Hours CDT",
+      "symbol": "NVDA",
+      "bias": "Puts (Intraday Breakdown)",
+      "entry": 219.72999572753906,
+      "exit": 219.22500610351562,
+      "delta_pct": -0.23,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-11 1100 Hours CDT",
+      "eval_time": "1200 Hours CDT",
+      "symbol": "AMD",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 515.875,
+      "exit": 513.1500244140625,
+      "delta_pct": -0.53,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-11 1100 Hours CDT",
+      "eval_time": "1200 Hours CDT",
+      "symbol": "NFLX",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 76.63999938964844,
+      "exit": 76.91000366210938,
+      "delta_pct": 0.35,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 1100 Hours CDT",
+      "eval_time": "1200 Hours CDT",
+      "symbol": "TSLA",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 365.17999267578125,
+      "exit": 365.260009765625,
+      "delta_pct": 0.02,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 1100 Hours CDT",
+      "eval_time": "1200 Hours CDT",
+      "symbol": "SPCX",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 148.36000061035156,
+      "exit": 148.8300018310547,
+      "delta_pct": 0.32,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-11 1145 Hours CDT",
+      "eval_time": "1245 Hours CDT",
+      "symbol": "NVDA",
+      "bias": "Puts (Intraday Breakdown)",
+      "entry": 219.11000061035156,
+      "exit": 219.2987060546875,
+      "delta_pct": 0.09,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-11 1145 Hours CDT",
+      "eval_time": "1245 Hours CDT",
+      "symbol": "AMD",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 513.114990234375,
+      "exit": 516.8699951171875,
+      "delta_pct": 0.73,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 1145 Hours CDT",
+      "eval_time": "1245 Hours CDT",
+      "symbol": "NFLX",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 76.82499694824219,
+      "exit": 77.11499786376953,
+      "delta_pct": 0.38,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 1145 Hours CDT",
+      "eval_time": "1246 Hours CDT",
+      "symbol": "SPCX",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 148.8000030517578,
+      "exit": 149.8800048828125,
+      "delta_pct": 0.73,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 1145 Hours CDT",
+      "eval_time": "1246 Hours CDT",
+      "symbol": "TSLA",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 365.3800048828125,
+      "exit": 365.32000732421875,
+      "delta_pct": -0.02,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 1230 Hours CDT",
+      "eval_time": "1330 Hours CDT",
+      "symbol": "SPCX",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 149.8000030517578,
+      "exit": 149.96499633789062,
+      "delta_pct": 0.11,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 1230 Hours CDT",
+      "eval_time": "1330 Hours CDT",
+      "symbol": "NVDA",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 219.23500061035156,
+      "exit": 219.610107421875,
+      "delta_pct": 0.17,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 1230 Hours CDT",
+      "eval_time": "1330 Hours CDT",
+      "symbol": "AMD",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 516.010009765625,
+      "exit": 518.155029296875,
+      "delta_pct": 0.42,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-11 1230 Hours CDT",
+      "eval_time": "1330 Hours CDT",
+      "symbol": "NFLX",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 77.03500366210938,
+      "exit": 77.2750015258789,
+      "delta_pct": 0.31,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-11 1230 Hours CDT",
+      "eval_time": "1330 Hours CDT",
+      "symbol": "TSLA",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 365.94000244140625,
+      "exit": 365.0400085449219,
+      "delta_pct": -0.25,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-11 1315 Hours CDT",
+      "eval_time": "1415 Hours CDT",
+      "symbol": "TSLA",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 365.05499267578125,
+      "exit": 364.9049987792969,
+      "delta_pct": -0.04,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 1315 Hours CDT",
+      "eval_time": "1415 Hours CDT",
+      "symbol": "SPCX",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 149.6804962158203,
+      "exit": 150.19500732421875,
+      "delta_pct": 0.34,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-11 1315 Hours CDT",
+      "eval_time": "1415 Hours CDT",
+      "symbol": "NVDA",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 219.1699981689453,
+      "exit": 219.1699981689453,
+      "delta_pct": 0.0,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 1315 Hours CDT",
+      "eval_time": "1415 Hours CDT",
+      "symbol": "AMD",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 516.4600219726562,
+      "exit": 516.6950073242188,
+      "delta_pct": 0.05,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 1315 Hours CDT",
+      "eval_time": "1415 Hours CDT",
+      "symbol": "NFLX",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 77.19499969482422,
+      "exit": 77.38500213623047,
+      "delta_pct": 0.25,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 1400 Hours CDT",
+      "eval_time": "1503 Hours CDT",
+      "symbol": "TSLA",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 365.17999267578125,
+      "exit": 365.4700012207031,
+      "delta_pct": 0.08,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 1400 Hours CDT",
+      "eval_time": "1503 Hours CDT",
+      "symbol": "SPCX",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 149.9250030517578,
+      "exit": 151.13999938964844,
+      "delta_pct": 0.81,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 1400 Hours CDT",
+      "eval_time": "1503 Hours CDT",
+      "symbol": "NVDA",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 219.3347930908203,
+      "exit": 218.1999969482422,
+      "delta_pct": -0.52,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-11 1400 Hours CDT",
+      "eval_time": "1503 Hours CDT",
+      "symbol": "AMD",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 517.3867797851562,
+      "exit": 516.280029296875,
+      "delta_pct": -0.21,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-11 1400 Hours CDT",
+      "eval_time": "1503 Hours CDT",
+      "symbol": "NFLX",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 77.2750015258789,
+      "exit": 77.4000015258789,
+      "delta_pct": 0.16,
+      "outcome": "NEUTRAL"
+    }
+  ]
+}

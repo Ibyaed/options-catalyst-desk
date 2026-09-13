@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  options-desk-api:
+    build: .
+    command: uvicorn src.web.app:app --host 0.0.0.0 --port 8000
+    volumes:
+      - .:/app
+    working_dir: /app
+    ports:
+      - '8000:8000'
+    environment:
+      - PYTHONUNBUFFERED=1
