@@ -8,7 +8,7 @@
   <meta name='apple-mobile-web-app-status-bar-style' content='black-translucent' />
   <link rel='manifest' href='/manifest.json' />
   <link rel='apple-touch-icon' href='https://cdn-icons-png.flaticon.com/512/2916/2916114.png' />
-  <title>Options Catalyst Desk</title>
+  <title>Rock Solid Trades</title>
   <script src='https://s3.tradingview.com/tv.js'></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -70,21 +70,28 @@
     .thesis-list li::before { content: '◆'; color: #38bdf8; position: absolute; left: 0; }
     .level-pills { display: flex; gap: 8px; margin-top: 8px; }
     .pill { background: #1e293b; color: #38bdf8; font-size: 11px; font-weight: bold; padding: 4px 8px; border-radius: 4px; }
-    
-    /* MOBILE RESPONSIVENESS & BOTTOM SHEET MODAL */
-    @media (max-width: 768px) {
+    .brand-lockup { display:flex; align-items:center; gap:12px; letter-spacing:.06em; }
+    .derrick-sticker { display:grid; place-items:center; width:42px; height:42px; border-radius:10px; background:#0b1329; border:1px solid #1e293b; flex-shrink:0; }
+    .lamp { width:12px; height:12px; border-radius:50%; background:#f59e0b; box-shadow:0 0 10px #f59e0b; display:inline-block; }
+    .lamp.online { background:#10b981; box-shadow:0 0 12px #10b981; }
+    .lamp.waiting { background:#f59e0b; box-shadow:0 0 12px #f59e0b; animation: lampulse 1.1s ease-in-out infinite; }
+    .lamp.offline { background:#ef4444; box-shadow:0 0 12px #ef4444; }
+    @keyframes lampulse { 50% { opacity:.4; } }
+    .indicator-panel { margin-top:18px; padding-top:16px; border-top:1px solid #1e293b; }
+    .indicator-panel h4 { font-size:11px; letter-spacing:.12em; color:#64748b; text-transform:uppercase; margin-bottom:10px; }
+    .indicator-row { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+    .ind-card { background:#0f172a; border:1px solid #1e293b; border-radius:8px; padding:12px; }
+    .ind-card .k { font-size:11px; color:#64748b; text-transform:uppercase; font-weight:700; }
+    .ind-card .v { display:flex; align-items:center; gap:8px; margin-top:6px; font-size:14px; font-weight:700; }
+    @media (max-width:768px){
+      .indicator-row { grid-template-columns:1fr; }
       body { padding: 12px; }
       header { padding-right: 0; flex-direction: column; align-items: flex-start; gap: 12px; border-bottom: none; margin-bottom: 10px; }
       .btn-header-refresh { top: 12px; right: 12px; padding: 6px 12px; font-size: 12px; }
       .macro-bar { flex-direction: column; align-items: flex-start; gap: 10px; padding: 12px; }
       .badge-timestamp { margin-left: 0; margin-top: 6px; display: block; width: fit-content; }
       .modal-overlay { align-items: flex-end; padding: 0; }
-      .modal-card { border-radius: 20px 20px 0 0; padding: 20px 16px; max-height: 90vh; animation: slideUp 0.3s ease-out forwards; }
-      @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-      .modal-card::before { content: ''; display: block; width: 40px; height: 5px; background: #334155; border-radius: 3px; margin: 0 auto 16px auto; }
-      .modal-close { top: 16px; right: 16px; font-size: 28px; }
-      .desk-header { flex-direction: column; gap: 8px; }
-      .rating-badge { text-align: left; }
+      .modal-card { border-radius: 20px 20px 0 0; padding: 20px 16px; max-height: 90vh; }
       .chart-container-box { height: 280px; }
       .metric-grid-4 { grid-template-columns: 1fr 1fr; }
       .scenario-container { grid-template-columns: 1fr; }
@@ -94,56 +101,113 @@
 </head>
 <body>
   <header>
-    <h1>Options Catalyst Desk</h1>
+    <h1 class="brand-lockup">
+      <span class="derrick-sticker">
+        <svg width="34" height="34" viewBox="0 0 64 64" fill="none">
+          <path d="M32 4 L12 58 H20 L24 48 H40 L44 58 H52 L32 4Z" stroke="#38bdf8" stroke-width="2.4" fill="#0b2238"/>
+          <path d="M24 48 H40" stroke="#f59e0b" stroke-width="2"/>
+          <path d="M27 38 H37" stroke="#94a3b8" stroke-width="2"/>
+          <path d="M29 28 H35" stroke="#94a3b8" stroke-width="2"/>
+          <circle cx="32" cy="16" r="2.2" fill="#38bdf8"/>
+          <path d="M8 58 H56" stroke="#64748b" stroke-width="2"/>
+        </svg>
+      </span>
+      ROCK SOLID TRADES
+      <span id="desk-lamp" class="lamp waiting"></span>
+    </h1>
   </header>
   <button class='btn-header-refresh' type='button' onclick='refreshDesk()'><span class='icon-spin'>🔄</span> Refresh</button>
   <div class='macro-bar'>
-    <div>WTI Oil: <span class='macro-val' id='macro-oil'>{{ macro.get('WTI Crude', '$103.55 (+7.81%)') }}</span></div>
-    <div>10Y Yield: <span class='macro-val' id='macro-yield'>{{ macro.get('10Y Yield', '4.94%') }}</span></div>
-    <div>Tech/QQQ: <span class='macro-val' id='macro-tech'>{{ macro.get('Tech/QQQ', '$715.25 (-1.06%)') }}</span></div>
-    <div>🎯 1-Hr Accuracy: 
-      <span class='macro-val' id='macro-accuracy' style='color:#10b981;'>
-        {{ stats.win_rate if stats else 'N/A' }} ({{ stats.wins if stats else 0 }}W / {{ stats.losses if stats else 0 }}L)
-      </span>
-      <span class='badge-timestamp' id='macro-timestamp'>--:--:-- CDT</span>
-    </div>
+    <div>WTI Oil: <span class='macro-val' id='macro-oil'>$103.55 (+7.81%)</span></div>
+    <div>10Y Yield: <span class='macro-val' id='macro-yield'>4.94%</span></div>
+    <div>Tech/QQQ: <span class='macro-val' id='macro-tech'>$741.47 (-1.06%)</span></div>
+    <div>1-Hr Accuracy: <span class='macro-val' id='macro-accuracy' style='color:#10b981;'>67.8% (40W / 19L)</span>
+      <span class='badge-timestamp' id='macro-timestamp'>--:--:-- CDT</span></div>
   </div>
   <div class='memory-banner'>
-    <div class='memory-title'>🧠 Agentic Learning State & Retrospective Memory</div>
-    <div id='desk-memory-content' class='memory-text'>{{ memory }}</div>
+    <div class='memory-title'>AGENTIC LEARNING STATE & RETROSPECTIVE MEMORY</div>
+    <div id='desk-memory-content' class='memory-text'>[SESSION STANDBY] Active Window: 08:00 - 15:30 CDT.</div>
   </div>
   <div class='section-title'>TOP 3 X / FINTWIT TRENDING OPTIONS PLAYS</div>
   <div class='grid' id='trendingGrid'>
-    {% for card in trending_cards %}
-    <div class='card trending-card' id='card-{{ card.symbol }}' onclick='openDossier("{{ card.symbol }}")'>
-      <span class='badge-rank'>#{{ card.social_rank }} X TRENDING</span>
-      <h2>${{ card.symbol }}</h2>
-      <div class='badge-signal {% if "LONG" in card.recommendation %}long{% elif "REVERSAL" in card.recommendation %}reversal{% elif "SHORT" in card.recommendation %}short{% else %}neutral{% endif %}'>
-        {{ card.recommendation }}
-      </div>
-      <p>Price: <span class='val-price'>{{ card.price }}</span></p>
-      <p>Wave Phase: <span class='val-regime' style='color:#a78bfa;'>{{ card.elliott_phase }}</span></p>
-      <p>Fib Level: <span class='val-regime'>{{ card.fib_level }}</span></p>
-      <p>Protection: <span class='val-trail'>{{ card.trailing_target }}</span></p>
-      <p>Options Bias: <span class='val-bias'>{{ card.options_bias }}</span></p>
+    <div class='card trending-card' id='card-HOOD' onclick='openDossier("HOOD")'>
+      <span class='badge-rank'>#1 X TRENDING</span>
+      <h2>$HOOD</h2>
+      <div class='badge-signal long'>LONG (SPECULATIVE)</div>
+      <p>Price: <span class='val-price'>$123.73</span></p>
+      <p>Wave Phase: <span class='val-regime' style='color:#a78bfa;'>Wave 1 (Base Accumulation)</span></p>
+      <p>Fib Level: <span class='val-regime'>Extension (100–161.8%)</span></p>
+      <p>Protection: <span class='val-trail'>Target: $125.45</span></p>
+      <p>Options Bias: <span class='val-bias'>Calls (Breakout Expansion)</span></p>
     </div>
-    {% endfor %}
+    <div class='card trending-card' id='card-AMD' onclick='openDossier("AMD")'>
+      <span class='badge-rank'>#2 X TRENDING</span>
+      <h2>$AMD</h2>
+      <div class='badge-signal long'>LONG (SPECULATIVE)</div>
+      <p>Price: <span class='val-price'>$614.83</span></p>
+      <p>Wave Phase: <span class='val-regime' style='color:#a78bfa;'>Wave 1 (Base Accumulation)</span></p>
+      <p>Fib Level: <span class='val-regime'>Extension (100–161.8%)</span></p>
+      <p>Protection: <span class='val-trail'>Target: $621.67</span></p>
+      <p>Options Bias: <span class='val-bias'>Calls (Breakout Expansion)</span></p>
+    </div>
+    <div class='card trending-card' id='card-PSKY' onclick='openDossier("PSKY")'>
+      <span class='badge-rank'>#3 X TRENDING</span>
+      <h2>$PSKY</h2>
+      <div class='badge-signal short'>SHORT (SPECULATIVE)</div>
+      <p>Price: <span class='val-price'>$9.99</span></p>
+      <p>Wave Phase: <span class='val-regime' style='color:#a78bfa;'>Wave 3 Bearish / Wave C</span></p>
+      <p>Fib Level: <span class='val-regime'>Deep Retracement (&lt;61.8%)</span></p>
+      <p>Protection: <span class='val-trail'>Inval: $10.37</span></p>
+      <p>Options Bias: <span class='val-bias'>Puts (Breakdown Trend)</span></p>
+    </div>
   </div>
   <div class='section-title'>CORE UNIVERSE (30-MINUTE INTRADAY ENGINE)</div>
   <main class='grid' id='deskGrid'>
-    {% for card in cards %}
-    <div class='card' id='card-{{ card.symbol }}' onclick='openDossier("{{ card.symbol }}")'>
-      <h2>${{ card.symbol }}</h2>
-      <div class='badge-signal {% if "LONG" in card.recommendation %}long{% elif "REVERSAL" in card.recommendation %}reversal{% elif "SHORT" in card.recommendation %}short{% else %}neutral{% endif %}'>
-        {{ card.recommendation }}
-      </div>
-      <p>Price: <span class='val-price'>{{ card.price }}</span></p>
-      <p>Wave Phase: <span class='val-regime' style='color:#a78bfa;'>{{ card.elliott_phase }}</span></p>
-      <p>Fib Level: <span class='val-regime'>{{ card.fib_level }}</span></p>
-      <p>Protection: <span class='val-trail'>{{ card.trailing_target }}</span></p>
-      <p>Options Bias: <span class='val-bias'>{{ card.options_bias }}</span></p>
+    <div class='card' id='card-TSLA' onclick='openDossier("TSLA")'>
+      <h2>$TSLA</h2>
+      <div class='badge-signal long'>LONG (SPECULATIVE)</div>
+      <p>Price: <span class='val-price'>$374.97</span></p>
+      <p>Wave Phase: <span class='val-regime' style='color:#a78bfa;'>Wave 1 (Base Accumulation)</span></p>
+      <p>Fib Level: <span class='val-regime'>Extension (100–161.8%)</span></p>
+      <p>Protection: <span class='val-trail'>Target: $378.71</span></p>
+      <p>Options Bias: <span class='val-bias'>Calls (Breakout Expansion)</span></p>
     </div>
-    {% endfor %}
+    <div class='card' id='card-SPCX' onclick='openDossier("SPCX")'>
+      <h2>$SPCX</h2>
+      <div class='badge-signal short'>SHORT (SPECULATIVE)</div>
+      <p>Price: <span class='val-price'>$152.40</span></p>
+      <p>Wave Phase: <span class='val-regime' style='color:#a78bfa;'>Wave 3 Bearish / Wave C</span></p>
+      <p>Fib Level: <span class='val-regime'>Deep Retracement (&lt;61.8%)</span></p>
+      <p>Protection: <span class='val-trail'>Inval: $153.86</span></p>
+      <p>Options Bias: <span class='val-bias'>Puts (Breakdown Trend)</span></p>
+    </div>
+    <div class='card' id='card-NVDA' onclick='openDossier("NVDA")'>
+      <h2>$NVDA</h2>
+      <div class='badge-signal long'>LONG (SPECULATIVE)</div>
+      <p>Price: <span class='val-price'>$226.95</span></p>
+      <p>Wave Phase: <span class='val-regime' style='color:#a78bfa;'>Wave 1 (Base Accumulation)</span></p>
+      <p>Fib Level: <span class='val-regime'>Extension (100–161.8%)</span></p>
+      <p>Protection: <span class='val-trail'>Target: $228.37</span></p>
+      <p>Options Bias: <span class='val-bias'>Calls (Breakout Expansion)</span></p>
+    </div>
+    <div class='card' id='card-AMD' onclick='openDossier("AMD")'>
+      <h2>$AMD</h2>
+      <div class='badge-signal long'>LONG (SPECULATIVE)</div>
+      <p>Price: <span class='val-price'>$614.83</span></p>
+      <p>Wave Phase: <span class='val-regime' style='color:#a78bfa;'>Wave 1 (Base Accumulation)</span></p>
+      <p>Fib Level: <span class='val-regime'>Extension (100–161.8%)</span></p>
+      <p>Protection: <span class='val-trail'>Target: $621.67</span></p>
+      <p>Options Bias: <span class='val-bias'>Calls (Breakout Expansion)</span></p>
+    </div>
+    <div class='card' id='card-NFLX' onclick='openDossier("NFLX")'>
+      <h2>$NFLX</h2>
+      <div class='badge-signal long'>LONG (SPECULATIVE)</div>
+      <p>Price: <span class='val-price'>$73.42</span></p>
+      <p>Wave Phase: <span class='val-regime' style='color:#a78bfa;'>Wave 1 (Base Accumulation)</span></p>
+      <p>Fib Level: <span class='val-regime'>Deep Retracement (&lt;61.8%)</span></p>
+      <p>Protection: <span class='val-trail'>Target: $74.09</span></p>
+      <p>Options Bias: <span class='val-bias'>Calls (Breakout Expansion)</span></p>
+    </div>
   </main>
   <div id='agentModal' class='modal-overlay' onclick='closeDossier(event)'>
     <div class='modal-card' onclick='event.stopPropagation()'>
@@ -152,7 +216,7 @@
         <div class='desk-title'><h3 id='dossier-sym'>--</h3><div class='desk-sub' id='dossier-company'>Loading profile...</div></div>
         <div><div class='desk-sub' style='text-align:right;'>Suggested Action</div><div class='rating-badge' id='dossier-rating'>LONG</div></div>
       </div>
-      <div class='chart-header-bar'><span id='chart-sub-label'>Intraday 5-Minute Chart (Extended Hours)</span><span style='color:#38bdf8;'>Extended Feed</span></div>
+      <div class='chart-header-bar'><span id='chart-sub-label'>Intraday 5-Minute Chart</span><span style='color:#38bdf8;'>Extended Feed</span></div>
       <div class='chart-container-box' id='tv-chart-box'></div>
       <div class='metric-grid-4'>
         <div class='metric-box'><label>Current Price</label><div class='val' id='dossier-price'>--</div><div class='sub'>Active Feed</div></div>
@@ -200,17 +264,28 @@
           </div>
         </div>
       </div>
+      <div class='indicator-panel'>
+        <h4>Feed indicators</h4>
+        <div class='indicator-row'>
+          <div class='ind-card'><div class='k'>Quote feed</div><div class='v'><span id='ind-feed-lamp' class='lamp waiting'></span><span id='ind-feed-text'>WAITING</span></div></div>
+          <div class='ind-card'><div class='k'>Session window</div><div class='v'><span id='ind-sess-lamp' class='lamp waiting'></span><span id='ind-sess-text'>WAITING</span></div></div>
+          <div class='ind-card'><div class='k'>Signal book</div><div class='v'><span id='ind-sig-lamp' class='lamp waiting'></span><span id='ind-sig-text'>WAITING</span></div></div>
+        </div>
+      </div>
     </div>
   </div>
   <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW Registration failed', err));
-      });
+    const API_BASE = '';
+    function setLamp(el, mode) { if (el) el.className = 'lamp ' + mode; }
+    function setDeskLamp(mode) { setLamp(document.getElementById('desk-lamp'), mode); }
+    function setInd(idLamp, idText, mode, label) {
+      setLamp(document.getElementById(idLamp), mode);
+      const t = document.getElementById(idText);
+      if (t) t.textContent = label;
     }
     function updateClock() {
       let el = document.getElementById('macro-timestamp');
-      if(el) { el.innerText = new Date().toLocaleTimeString() + ' CDT'; }
+      if(el) el.innerText = new Date().toLocaleTimeString() + ' CDT';
     }
     updateClock(); setInterval(updateClock, 1000);
     function renderTvChart(symbol) {
@@ -221,30 +296,23 @@
       box.appendChild(div);
       if(typeof TradingView !== 'undefined') {
         new TradingView.widget({
-          'autosize': true,
-          'symbol': symbol,
-          'interval': '5',
-          'timezone': 'America/Chicago',
-          'theme': 'dark',
-          'style': '1',
-          'locale': 'en',
-          'toolbar_bg': '#0b1329',
-          'enable_publishing': false,
-          'hide_side_toolbar': true,
-          'allow_symbol_change': false,
-          'extended_hours': true,
-          'withdateranges': true,
-          'container_id': 'tv_container'
+          autosize: true, symbol: symbol, interval: '5', timezone: 'America/Chicago',
+          theme: 'dark', style: '1', locale: 'en', toolbar_bg: '#0b1329',
+          enable_publishing: false, hide_side_toolbar: true, allow_symbol_change: false,
+          extended_hours: true, withdateranges: true, container_id: 'tv_container'
         });
       }
     }
     async function openDossier(symbol) {
       document.getElementById('agentModal').style.display = 'flex';
       document.getElementById('dossier-sym').innerText = '$' + symbol;
-      document.getElementById('chart-sub-label').innerText = symbol + ' - 5-Min Chart (Extended Hours Active)';
+      document.getElementById('chart-sub-label').innerText = symbol + ' - 5-Min Chart';
       renderTvChart(symbol);
+      setInd('ind-feed-lamp','ind-feed-text','waiting','WAITING');
+      setInd('ind-sess-lamp','ind-sess-text','waiting','WAITING');
+      setInd('ind-sig-lamp','ind-sig-text','waiting','WAITING');
       try {
-        let res = await fetch('/api/agent-desk/' + symbol + '?t=' + Date.now());
+        let res = await fetch(API_BASE + '/api/agent-desk/' + symbol + '?t=' + Date.now());
         if(res.ok) {
           let data = await res.json();
           document.getElementById('dossier-company').innerText = data.company_name || symbol;
@@ -258,16 +326,38 @@
           if(data.bear_leg) { document.getElementById('bear-trig').innerText = data.bear_leg.trigger; document.getElementById('bear-targets').innerText = data.bear_leg.targets; document.getElementById('bear-inval').innerText = data.bear_leg.invalidate; }
           if(data.desk_view) document.getElementById('dossier-deskview').innerText = data.desk_view;
           if(data.catalyst_headline) document.getElementById('dossier-news').innerText = data.catalyst_headline;
-          if(data.key_levels) { document.getElementById('lvl-s2').innerText = 'S2: ' + data.key_levels.s2; document.getElementById('lvl-s1').innerText = 'S1: ' + data.key_levels.s1; document.getElementById('lvl-pivot').innerText = 'P: ' + data.key_levels.pmh; document.getElementById('lvl-r1').innerText = 'R1: ' + data.key_levels.r1; }
+          if(data.key_levels) {
+            document.getElementById('lvl-s2').innerText = 'S2: ' + data.key_levels.s2;
+            document.getElementById('lvl-s1').innerText = 'S1: ' + data.key_levels.s1;
+            document.getElementById('lvl-pivot').innerText = 'P: ' + data.key_levels.pmh;
+            document.getElementById('lvl-r1').innerText = 'R1: ' + data.key_levels.r1;
+          }
+          setInd('ind-feed-lamp','ind-feed-text','online','ONLINE');
+          const sessOn = !!(data.session_active);
+          setInd('ind-sess-lamp','ind-sess-text', sessOn ? 'online' : 'waiting', sessOn ? 'LIVE' : 'STANDBY');
+          const rating = (data.rating || '').toUpperCase();
+          const sigMode = rating.includes('LONG') || rating.includes('SHORT') ? 'online' : (rating ? 'waiting' : 'offline');
+          setInd('ind-sig-lamp','ind-sig-text', sigMode, rating || 'NO SIGNAL');
+          setDeskLamp('online');
+        } else {
+          setInd('ind-feed-lamp','ind-feed-text','offline','OFFLINE');
+          setInd('ind-sess-lamp','ind-sess-text','offline','OFFLINE');
+          setInd('ind-sig-lamp','ind-sig-text','offline','OFFLINE');
         }
-      } catch(e) { console.warn(e); }
+      } catch(e) {
+        setInd('ind-feed-lamp','ind-feed-text','offline','OFFLINE');
+        setInd('ind-sess-lamp','ind-sess-text','offline','OFFLINE');
+        setInd('ind-sig-lamp','ind-sig-text','offline','OFFLINE');
+        setDeskLamp('offline');
+      }
     }
-    function closeDossier(e) { if(e.target.id === 'agentModal') { document.getElementById('agentModal').style.display = 'none'; } }
+    function closeDossier(e) { if(e.target.id === 'agentModal') document.getElementById('agentModal').style.display = 'none'; }
     async function refreshDesk() {
       let btn = document.querySelector('.btn-header-refresh');
-      if(btn) { btn.classList.add('spinning'); }
+      if(btn) btn.classList.add('spinning');
       try {
-        let res = await fetch('/api/refresh?t=' + Date.now());
+        setDeskLamp('waiting');
+        let res = await fetch(API_BASE + '/api/refresh?t=' + Date.now());
         let data = await res.json();
         if(data.macro) {
           if(document.getElementById('macro-oil')) document.getElementById('macro-oil').innerText = data.macro['WTI Crude'] || '--';
@@ -297,7 +387,8 @@
           });
         };
         updateCards(data.cards); updateCards(data.trending_cards);
-      } catch(e) { console.error(e); }
+        setDeskLamp('online');
+      } catch(e) { setDeskLamp('offline'); }
       finally { if(btn) setTimeout(() => btn.classList.remove('spinning'), 400); }
     }
     setInterval(refreshDesk, 10000);

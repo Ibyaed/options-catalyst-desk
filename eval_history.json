@@ -231,56 +231,6 @@
       "bear_trigger": 11.38
     },
     {
-      "id": "TSLA_1789155947",
-      "symbol": "TSLA",
-      "timestamp": 1789155947.662443,
-      "time_str": "2026-09-11 1445 Hours CDT",
-      "entry_price": 366.06500244140625,
-      "bias": "Calls (Breakout Expansion)",
-      "bull_trigger": 366.55,
-      "bear_trigger": 364.0
-    },
-    {
-      "id": "SPCX_1789155947",
-      "symbol": "SPCX",
-      "timestamp": 1789155947.978997,
-      "time_str": "2026-09-11 1445 Hours CDT",
-      "entry_price": 151.61500549316406,
-      "bias": "Calls (Breakout Expansion)",
-      "bull_trigger": 151.85,
-      "bear_trigger": 148.79
-    },
-    {
-      "id": "NVDA_1789155948",
-      "symbol": "NVDA",
-      "timestamp": 1789155948.381656,
-      "time_str": "2026-09-11 1445 Hours CDT",
-      "entry_price": 218.77000427246094,
-      "bias": "Stay Out / Iron Condor",
-      "bull_trigger": 220.01,
-      "bear_trigger": 218.23
-    },
-    {
-      "id": "AMD_1789155948",
-      "symbol": "AMD",
-      "timestamp": 1789155948.693635,
-      "time_str": "2026-09-11 1445 Hours CDT",
-      "entry_price": 515.9000244140625,
-      "bias": "Stay Out / Iron Condor",
-      "bull_trigger": 518.63,
-      "bear_trigger": 513.35
-    },
-    {
-      "id": "NFLX_1789155949",
-      "symbol": "NFLX",
-      "timestamp": 1789155949.001202,
-      "time_str": "2026-09-11 1445 Hours CDT",
-      "entry_price": 77.5,
-      "bias": "Calls (Breakout Expansion)",
-      "bull_trigger": 77.54,
-      "bear_trigger": 76.97
-    },
-    {
       "id": "ORCL_1789155949",
       "symbol": "ORCL",
       "timestamp": 1789155949.506937,
@@ -319,6 +269,126 @@
       "bias": "Puts (Breakdown Trend)",
       "bull_trigger": 11.665500000000002,
       "bear_trigger": 11.4345
+    },
+    {
+      "id": "ONON_1789740245",
+      "symbol": "ONON",
+      "timestamp": 1789740245.985207,
+      "time_str": "2026-09-18 0904 Hours CDT",
+      "entry_price": 27.14,
+      "bias": "Calls (Breakout Expansion)",
+      "bull_trigger": 27.4114,
+      "bear_trigger": 26.8686
+    },
+    {
+      "id": "RARE_1789740246",
+      "symbol": "RARE",
+      "timestamp": 1789740246.420048,
+      "time_str": "2026-09-18 0904 Hours CDT",
+      "entry_price": 14.43,
+      "bias": "Calls (Breakout Expansion)",
+      "bull_trigger": 14.5743,
+      "bear_trigger": 14.2857
+    },
+    {
+      "id": "ONON_1789743411",
+      "symbol": "ONON",
+      "timestamp": 1789743411.525888,
+      "time_str": "2026-09-18 0956 Hours CDT",
+      "entry_price": 27.33,
+      "bias": "Calls (Breakout Expansion)",
+      "bull_trigger": 27.603299999999997,
+      "bear_trigger": 27.0567
+    },
+    {
+      "id": "RARE_1789743411",
+      "symbol": "RARE",
+      "timestamp": 1789743411.993876,
+      "time_str": "2026-09-18 0956 Hours CDT",
+      "entry_price": 14.4,
+      "bias": "Calls (Breakout Expansion)",
+      "bull_trigger": 14.544,
+      "bear_trigger": 14.256
+    },
+    {
+      "id": "COIN_1789743949",
+      "symbol": "COIN",
+      "timestamp": 1789743949.846923,
+      "time_str": "2026-09-18 1005 Hours CDT",
+      "entry_price": 192.23,
+      "bias": "Calls (Breakout Expansion)",
+      "bull_trigger": 194.1523,
+      "bear_trigger": 190.30769999999998
+    },
+    {
+      "id": "TSLA_1789746168",
+      "symbol": "TSLA",
+      "timestamp": 1789746168.415597,
+      "time_str": "2026-09-18 1042 Hours CDT",
+      "entry_price": 361.75,
+      "bias": "Puts (Breakdown Trend)",
+      "bull_trigger": 365.3675,
+      "bear_trigger": 358.1325
+    },
+    {
+      "id": "SPCX_1789746168",
+      "symbol": "SPCX",
+      "timestamp": 1789746168.792247,
+      "time_str": "2026-09-18 1042 Hours CDT",
+      "entry_price": 150.72,
+      "bias": "Puts (Breakdown Trend)",
+      "bull_trigger": 152.2272,
+      "bear_trigger": 149.2128
+    },
+    {
+      "id": "NVDA_1789746169",
+      "symbol": "NVDA",
+      "timestamp": 1789746169.133288,
+      "time_str": "2026-09-18 1042 Hours CDT",
+      "entry_price": 219.49,
+      "bias": "Calls (Breakout Expansion)",
+      "bull_trigger": 221.6849,
+      "bear_trigger": 217.29510000000002
+    },
+    {
+      "id": "AMD_1789746169",
+      "symbol": "AMD",
+      "timestamp": 1789746169.431127,
+      "time_str": "2026-09-18 1042 Hours CDT",
+      "entry_price": 543.76,
+      "bias": "Calls (Breakout Expansion)",
+      "bull_trigger": 549.1976,
+      "bear_trigger": 538.3224
+    },
+    {
+      "id": "NFLX_1789746169",
+      "symbol": "NFLX",
+      "timestamp": 1789746169.800769,
+      "time_str": "2026-09-18 1042 Hours CDT",
+      "entry_price": 71.75,
+      "bias": "Puts (Breakdown Trend)",
+      "bull_trigger": 72.4675,
+      "bear_trigger": 71.0325
+    },
+    {
+      "id": "RARE_1789746170",
+      "symbol": "RARE",
+      "timestamp": 1789746170.484956,
+      "time_str": "2026-09-18 1042 Hours CDT",
+      "entry_price": 14.86,
+      "bias": "Calls (Breakout Expansion)",
+      "bull_trigger": 15.0086,
+      "bear_trigger": 14.7114
+    },
+    {
+      "id": "COIN_1789746651",
+      "symbol": "COIN",
+      "timestamp": 1789746651.291785,
+      "time_str": "2026-09-18 1050 Hours CDT",
+      "entry_price": 192.5,
+      "bias": "Calls (Breakout Expansion)",
+      "bull_trigger": 194.425,
+      "bear_trigger": 190.575
     }
   ],
   "completed": [
@@ -1140,6 +1210,156 @@
       "entry": 77.2750015258789,
       "exit": 77.4000015258789,
       "delta_pct": 0.16,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-11 1445 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "TSLA",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 366.06500244140625,
+      "exit": 358.96,
+      "delta_pct": -1.94,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-11 1445 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "SPCX",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 151.61500549316406,
+      "exit": 147.52,
+      "delta_pct": -2.7,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-11 1445 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "NVDA",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 218.77000427246094,
+      "exit": 212.21,
+      "delta_pct": -3.0,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-11 1445 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "AMD",
+      "bias": "Stay Out / Iron Condor",
+      "entry": 515.9000244140625,
+      "exit": 486.46,
+      "delta_pct": -5.71,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-11 1445 Hours CDT",
+      "eval_time": "0800 Hours CDT",
+      "symbol": "NFLX",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 77.5,
+      "exit": 78.39,
+      "delta_pct": 1.15,
+      "outcome": "WIN"
+    },
+    {
+      "time": "2026-09-18 0904 Hours CDT",
+      "eval_time": "1004 Hours CDT",
+      "symbol": "TSLA",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 364.85,
+      "exit": 368.3500061035156,
+      "delta_pct": 0.96,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-18 0904 Hours CDT",
+      "eval_time": "1004 Hours CDT",
+      "symbol": "SPCX",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 152.07,
+      "exit": 152.2198944091797,
+      "delta_pct": 0.1,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-18 0904 Hours CDT",
+      "eval_time": "1004 Hours CDT",
+      "symbol": "NVDA",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 219.13,
+      "exit": 219.25,
+      "delta_pct": 0.05,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-18 0904 Hours CDT",
+      "eval_time": "1004 Hours CDT",
+      "symbol": "AMD",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 548.82,
+      "exit": 542.4149780273438,
+      "delta_pct": -1.17,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-18 0904 Hours CDT",
+      "eval_time": "1004 Hours CDT",
+      "symbol": "NFLX",
+      "bias": "Puts (Breakdown Trend)",
+      "entry": 71.66,
+      "exit": 72.17500305175781,
+      "delta_pct": 0.72,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-18 0956 Hours CDT",
+      "eval_time": "1057 Hours CDT",
+      "symbol": "TSLA",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 368.35,
+      "exit": 362.8599853515625,
+      "delta_pct": -1.49,
+      "outcome": "LOSS"
+    },
+    {
+      "time": "2026-09-18 0956 Hours CDT",
+      "eval_time": "1057 Hours CDT",
+      "symbol": "SPCX",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 152.44,
+      "exit": 151.03500366210938,
+      "delta_pct": -0.92,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-18 0956 Hours CDT",
+      "eval_time": "1057 Hours CDT",
+      "symbol": "NVDA",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 219.27,
+      "exit": 219.71009826660156,
+      "delta_pct": 0.2,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-18 0956 Hours CDT",
+      "eval_time": "1057 Hours CDT",
+      "symbol": "AMD",
+      "bias": "Calls (Breakout Expansion)",
+      "entry": 544.22,
+      "exit": 544.1900024414062,
+      "delta_pct": -0.01,
+      "outcome": "NEUTRAL"
+    },
+    {
+      "time": "2026-09-18 0956 Hours CDT",
+      "eval_time": "1057 Hours CDT",
+      "symbol": "NFLX",
+      "bias": "Puts (Breakdown Trend)",
+      "entry": 72.19,
+      "exit": 71.75,
+      "delta_pct": -0.61,
       "outcome": "NEUTRAL"
     }
   ]

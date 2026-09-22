@@ -94,3 +94,18 @@
 | 2026-09-11 1400 Hours CDT | 1503 Hours CDT | **NVDA** | Stay Out / Iron Condor | $219.33 | $218.20 | -0.52% | 🔴 LOSS |
 | 2026-09-11 1400 Hours CDT | 1503 Hours CDT | **AMD** | Stay Out / Iron Condor | $517.39 | $516.28 | -0.21% | 🟢 WIN |
 | 2026-09-11 1400 Hours CDT | 1503 Hours CDT | **NFLX** | Calls (Breakout Expansion) | $77.28 | $77.40 | +0.16% | ⚪ NEUTRAL |
+| 2026-09-11 1445 Hours CDT | 0800 Hours CDT | **TSLA** | Calls (Breakout Expansion) | $366.07 | $358.96 | -1.94% | 🔴 LOSS |
+| 2026-09-11 1445 Hours CDT | 0800 Hours CDT | **SPCX** | Calls (Breakout Expansion) | $151.62 | $147.52 | -2.70% | 🔴 LOSS |
+| 2026-09-11 1445 Hours CDT | 0800 Hours CDT | **NVDA** | Stay Out / Iron Condor | $218.77 | $212.21 | -3.00% | 🔴 LOSS |
+| 2026-09-11 1445 Hours CDT | 0800 Hours CDT | **AMD** | Stay Out / Iron Condor | $515.90 | $486.46 | -5.71% | 🔴 LOSS |
+| 2026-09-11 1445 Hours CDT | 0800 Hours CDT | **NFLX** | Calls (Breakout Expansion) | $77.50 | $78.39 | +1.15% | 🟢 WIN |
+| 2026-09-18 0904 Hours CDT | 1004 Hours CDT | **TSLA** | Calls (Breakout Expansion) | $364.85 | $368.35 | +0.96% | ⚪ NEUTRAL |
+| 2026-09-18 0904 Hours CDT | 1004 Hours CDT | **SPCX** | Calls (Breakout Expansion) | $152.07 | $152.22 | +0.10% | ⚪ NEUTRAL |
+| 2026-09-18 0904 Hours CDT | 1004 Hours CDT | **NVDA** | Calls (Breakout Expansion) | $219.13 | $219.25 | +0.05% | ⚪ NEUTRAL |
+| 2026-09-18 0904 Hours CDT | 1004 Hours CDT | **AMD** | Calls (Breakout Expansion) | $548.82 | $542.41 | -1.17% | 🔴 LOSS |
+| 2026-09-18 0904 Hours CDT | 1004 Hours CDT | **NFLX** | Puts (Breakdown Trend) | $71.66 | $72.18 | +0.72% | ⚪ NEUTRAL |
+| 2026-09-18 0956 Hours CDT | 1057 Hours CDT | **TSLA** | Calls (Breakout Expansion) | $368.35 | $362.86 | -1.49% | 🔴 LOSS |
+| 2026-09-18 0956 Hours CDT | 1057 Hours CDT | **SPCX** | Calls (Breakout Expansion) | $152.44 | $151.04 | -0.92% | ⚪ NEUTRAL |
+| 2026-09-18 0956 Hours CDT | 1057 Hours CDT | **NVDA** | Calls (Breakout Expansion) | $219.27 | $219.71 | +0.20% | ⚪ NEUTRAL |
+| 2026-09-18 0956 Hours CDT | 1057 Hours CDT | **AMD** | Calls (Breakout Expansion) | $544.22 | $544.19 | -0.01% | ⚪ NEUTRAL |
+| 2026-09-18 0956 Hours CDT | 1057 Hours CDT | **NFLX** | Puts (Breakdown Trend) | $72.19 | $71.75 | -0.61% | ⚪ NEUTRAL |
