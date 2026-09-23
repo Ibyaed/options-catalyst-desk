@@ -1,114 +1,66 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-  <meta charset='UTF-8' />
-  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
-  <meta name='theme-color' content='#060913' />
-  <meta name='mobile-web-app-capable' content='yes' />
-  <meta name='apple-mobile-web-app-status-bar-style' content='black-translucent' />
-  <link rel='manifest' href='/manifest.json' />
-  <link rel='apple-touch-icon' href='https://cdn-icons-png.flaticon.com/512/2916/2916114.png' />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rock Solid Trades</title>
-  <script src='https://s3.tradingview.com/tv.js'></script>
+  <script src="https://s3.tradingview.com/tv.js"></script>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #060913; color: #e2e8f0; font-family: system-ui, sans-serif; padding: 24px; min-height: 100vh; }
-    header { display: flex; justify-content: space-between; margin-bottom: 20px; border-bottom: 1px solid #1e293b; padding-bottom: 16px; padding-right: 140px; }
-    h1 { font-size: 26px; color: #f8fafc; }
-    .btn-header-refresh { position: fixed; top: 20px; right: 24px; z-index: 999; display: flex; align-items: center; gap: 8px; background: #0f172a; color: #38bdf8; border: 1px solid #38bdf8; padding: 9px 18px; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.7); }
-    .btn-header-refresh:hover { background: #1e293b; }
-    .icon-spin { display: inline-block; }
-    .spinning .icon-spin { animation: spin 0.8s linear infinite; }
-    @keyframes spin { 100% { transform: rotate(360deg); } }
-    .macro-bar { display: flex; flex-wrap: wrap; gap: 24px; background: #0f172a; border: 1px solid #1e293b; padding: 14px 20px; border-radius: 8px; font-size: 14px; margin-bottom: 16px; }
-    .macro-val { color: #38bdf8; font-weight: bold; margin-left: 4px; }
-    .badge-timestamp { background: #0b1329; color: #38bdf8; border: 1px solid #38bdf8; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: bold; margin-left: 10px; box-shadow: 0 0 8px rgba(56,189,248,0.25); }
+    .trade-marks { display: flex; gap: 8px; margin-top: 12px; }
+    .mark-btn { min-width: 72px; height: 36px; padding: 0 10px; border-radius: 8px; border: 1px solid #1e293b; background: #0f172a; color: #94a3b8; font-size: 12px; font-weight: bold; cursor: pointer; }
+    .mark-btn.on-yes { background: #064e3b; color: #10b981; border-color: #10b981; }
+    .mark-btn.on-no { background: #7f1d1d; color: #ef4444; border-color: #ef4444; }    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #060913; color: #e2e8f0; font-family: system-ui, sans-serif; padding: 24px; }
+    header { display: flex; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #1e293b; padding-bottom: 16px; }
+    h1 { font-size: 26px; color: #f8fafc; display: flex; align-items: center; gap: 12px; }
+    .derrick-sticker { width: 42px; height: 42px; border-radius: 10px; background: #0b1329; border: 1px solid #1e293b; display: grid; place-items: center; }
+    .btn-header-refresh { position: fixed; top: 20px; right: 24px; background: #0f172a; color: #38bdf8; border: 1px solid #38bdf8; padding: 9px 18px; border-radius: 6px; font-weight: bold; cursor: pointer; z-index: 999; }
+    .macro-bar { display: flex; flex-wrap: wrap; gap: 24px; background: #0f172a; border: 1px solid #1e293b; padding: 14px 20px; border-radius: 8px; margin-bottom: 16px; }
+    .macro-val { color: #38bdf8; font-weight: bold; }
     .memory-banner { background: #090e1a; border: 1px solid #1e293b; border-left: 4px solid #8b5cf6; border-radius: 8px; padding: 14px 20px; margin-bottom: 24px; }
-    .memory-title { font-size: 11px; font-weight: bold; color: #a78bfa; text-transform: uppercase; margin-bottom: 6px; }
-    .memory-text { font-size: 13px; color: #cbd5e1; white-space: pre-line; line-height: 1.5; }
-    .section-title { font-size: 15px; font-weight: bold; color: #94a3b8; margin-bottom: 14px; text-transform: uppercase; }
+    .memory-title { font-size: 11px; color: #a78bfa; font-weight: bold; text-transform: uppercase; }
+    .section-title { font-size: 15px; color: #94a3b8; font-weight: bold; text-transform: uppercase; margin-bottom: 14px; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 32px; }
-    .card { background: #0b1120; border: 1px solid #1e293b; border-radius: 10px; padding: 20px; cursor: pointer; position: relative; transition: all 0.15s ease; }
-    .card:hover { border-color: #38bdf8; transform: translateY(-3px); box-shadow: 0 4px 18px rgba(56,189,248,0.15); }
+    .card { background: #0b1120; border: 1px solid #1e293b; border-radius: 10px; padding: 20px; cursor: pointer; position: relative; }
     .trending-card { border-color: #e11d48; background: #0f0f1f; }
-    .trending-card:hover { border-color: #fb7185; }
-    .badge-rank { position: absolute; top: 16px; right: 16px; background: #e11d48; color: #fff; font-size: 11px; font-weight: bold; padding: 2px 8px; border-radius: 12px; }
-    .badge-signal { display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: bold; border-radius: 4px; margin-bottom: 10px; text-transform: uppercase; }
-    .badge-signal.long { background: rgba(16,185,129,0.18); color: #10b981; border: 1px solid #10b981; }
-    .badge-signal.reversal { background: rgba(245,158,11,0.18); color: #f59e0b; border: 1px solid #f59e0b; }
-    .badge-signal.short { background: rgba(239,68,68,0.18); color: #ef4444; border: 1px solid #ef4444; }
-    .badge-signal.neutral { background: rgba(148,163,184,0.18); color: #94a3b8; border: 1px solid #94a3b8; }
-    .card h2 { font-size: 22px; color: #fff; margin-bottom: 8px; border-bottom: 1px solid #1e293b; padding-bottom: 4px; }
-    .card p { font-size: 13px; color: #94a3b8; margin: 6px 0; }
-    .val-price { color: #f8fafc; font-weight: bold; font-size: 15px; }
-    .val-regime, .val-trail { color: #38bdf8; font-weight: bold; }
+    .badge-rank { position: absolute; top: 16px; right: 16px; background: #e11d48; color: #fff; font-size: 11px; padding: 2px 8px; border-radius: 12px; }
+    .badge-signal { display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: bold; border-radius: 4px; margin-bottom: 10px; }
+    .badge-signal.long { color: #10b981; border: 1px solid #10b981; }
+    .badge-signal.short { color: #ef4444; border: 1px solid #ef4444; }
+    .badge-signal.neutral { color: #94a3b8; border: 1px solid #94a3b8; }
+    .card h2 { color: #fff; margin: 8px 0; border-bottom: 1px solid #1e293b; padding-bottom: 4px; }
+    .card p { color: #94a3b8; font-size: 13px; margin: 6px 0; }
+    .val { color: #38bdf8; font-weight: bold; }
+    .val-price { color: #fff; font-weight: bold; }
     .val-bias { color: #10b981; font-weight: bold; }
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(3,7,18,0.88); z-index: 1000; justify-content: center; align-items: center; padding: 20px; backdrop-filter: blur(8px); }
-    .modal-card { background: #090e1a; border: 1px solid #1e293b; border-radius: 14px; width: 100%; max-width: 900px; padding: 24px 28px; max-height: 92vh; overflow-y: auto; position: relative; }
-    .modal-close { position: absolute; top: 18px; right: 20px; background: none; border: none; color: #94a3b8; font-size: 26px; cursor: pointer; }
-    .desk-header { display: flex; justify-content: space-between; margin-bottom: 16px; }
-    .desk-title h3 { font-size: 30px; color: #fff; }
-    .desk-sub { color: #64748b; font-size: 13px; text-transform: uppercase; margin-top: 4px; }
-    .rating-badge { font-size: 26px; font-weight: bold; color: #10b981; text-align: right; }
-    .chart-container-box { width: 100%; height: 380px; border: 1px solid #1e293b; border-radius: 8px; background: #060913; margin-bottom: 20px; }
-    .chart-header-bar { display: flex; justify-content: space-between; padding: 6px 12px; background: #0b1329; border-bottom: 1px solid #1e293b; font-size: 11px; font-weight: bold; color: #94a3b8; text-transform: uppercase; }
-    .metric-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
-    .metric-box { background: #0f172a; border: 1px solid #1e293b; padding: 10px 12px; border-radius: 8px; }
-    .metric-box label { font-size: 11px; color: #64748b; text-transform: uppercase; font-weight: bold; }
-    .metric-box .val { font-size: 15px; color: #f8fafc; font-weight: bold; margin-top: 4px; }
-    .metric-box .sub { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+    .lamp { width: 12px; height: 12px; border-radius: 50%; display: inline-block; background: #f59e0b; }
+    .lamp.online { background: #10b981; }
+    .lamp.waiting { background: #f59e0b; }
+    .lamp.offline { background: #ef4444; }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(3,7,18,.88); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
+    .modal-card { background: #090e1a; border: 1px solid #1e293b; border-radius: 14px; width: 100%; max-width: 900px; padding: 24px; max-height: 92vh; overflow: auto; position: relative; }
+    .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: #94a3b8; font-size: 26px; cursor: pointer; }
+    .chart-container-box { width: 100%; height: 360px; background: #060913; border: 1px solid #1e293b; margin: 12px 0; }
+    .metric-grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+    .metric-box { background: #0f172a; border: 1px solid #1e293b; padding: 10px; border-radius: 8px; }
     .scenario-container { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
-    .scenario-box { border: 1px solid #1e293b; border-radius: 8px; padding: 14px; background: #0b1329; }
+    .scenario-box { padding: 14px; border: 1px solid #1e293b; border-radius: 8px; }
     .scenario-box.bull { border-left: 4px solid #10b981; }
     .scenario-box.bear { border-left: 4px solid #ef4444; }
-    .scenario-box h4 { font-size: 13px; font-weight: bold; margin-bottom: 10px; }
-    .scenario-row { display: flex; justify-content: space-between; font-size: 13px; color: #94a3b8; margin: 4px 0; }
-    .desk-view-box { background: #0d1527; border-left: 3px solid #38bdf8; padding: 12px 16px; font-size: 13px; color: #cbd5e1; margin-bottom: 16px; }
-    .bottom-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 16px; }
-    .thesis-list { list-style: none; margin-top: 8px; }
-    .thesis-list li { font-size: 12px; color: #94a3b8; margin-bottom: 6px; padding-left: 16px; position: relative; }
-    .thesis-list li::before { content: '◆'; color: #38bdf8; position: absolute; left: 0; }
-    .level-pills { display: flex; gap: 8px; margin-top: 8px; }
-    .pill { background: #1e293b; color: #38bdf8; font-size: 11px; font-weight: bold; padding: 4px 8px; border-radius: 4px; }
-    .brand-lockup { display:flex; align-items:center; gap:12px; letter-spacing:.06em; }
-    .derrick-sticker { display:grid; place-items:center; width:42px; height:42px; border-radius:10px; background:#0b1329; border:1px solid #1e293b; flex-shrink:0; }
-    .lamp { width:12px; height:12px; border-radius:50%; background:#f59e0b; box-shadow:0 0 10px #f59e0b; display:inline-block; }
-    .lamp.online { background:#10b981; box-shadow:0 0 12px #10b981; }
-    .lamp.waiting { background:#f59e0b; box-shadow:0 0 12px #f59e0b; animation: lampulse 1.1s ease-in-out infinite; }
-    .lamp.offline { background:#ef4444; box-shadow:0 0 12px #ef4444; }
-    @keyframes lampulse { 50% { opacity:.4; } }
-    .indicator-panel { margin-top:18px; padding-top:16px; border-top:1px solid #1e293b; }
-    .indicator-panel h4 { font-size:11px; letter-spacing:.12em; color:#64748b; text-transform:uppercase; margin-bottom:10px; }
-    .indicator-row { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
-    .ind-card { background:#0f172a; border:1px solid #1e293b; border-radius:8px; padding:12px; }
-    .ind-card .k { font-size:11px; color:#64748b; text-transform:uppercase; font-weight:700; }
-    .ind-card .v { display:flex; align-items:center; gap:8px; margin-top:6px; font-size:14px; font-weight:700; }
-    @media (max-width:768px){
-      .indicator-row { grid-template-columns:1fr; }
-      body { padding: 12px; }
-      header { padding-right: 0; flex-direction: column; align-items: flex-start; gap: 12px; border-bottom: none; margin-bottom: 10px; }
-      .btn-header-refresh { top: 12px; right: 12px; padding: 6px 12px; font-size: 12px; }
-      .macro-bar { flex-direction: column; align-items: flex-start; gap: 10px; padding: 12px; }
-      .badge-timestamp { margin-left: 0; margin-top: 6px; display: block; width: fit-content; }
-      .modal-overlay { align-items: flex-end; padding: 0; }
-      .modal-card { border-radius: 20px 20px 0 0; padding: 20px 16px; max-height: 90vh; }
-      .chart-container-box { height: 280px; }
-      .metric-grid-4 { grid-template-columns: 1fr 1fr; }
-      .scenario-container { grid-template-columns: 1fr; }
-      .bottom-layout { grid-template-columns: 1fr; }
-    }
+    .desk-view-box { background: #0d1527; border-left: 3px solid #38bdf8; padding: 12px; margin: 12px 0; }
+    .indicator-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+    .ind-card { background: #0f172a; border: 1px solid #1e293b; padding: 12px; border-radius: 8px; }
+    .rating-badge { font-size: 22px; font-weight: bold; color: #10b981; }
+    .pill { background: #1e293b; color: #38bdf8; padding: 4px 8px; border-radius: 4px; margin-right: 6px; font-size: 11px; }
   </style>
 </head>
 <body>
   <header>
-    <h1 class="brand-lockup">
+    <h1>
       <span class="derrick-sticker">
         <svg width="34" height="34" viewBox="0 0 64 64" fill="none">
           <path d="M32 4 L12 58 H20 L24 48 H40 L44 58 H52 L32 4Z" stroke="#38bdf8" stroke-width="2.4" fill="#0b2238"/>
           <path d="M24 48 H40" stroke="#f59e0b" stroke-width="2"/>
-          <path d="M27 38 H37" stroke="#94a3b8" stroke-width="2"/>
-          <path d="M29 28 H35" stroke="#94a3b8" stroke-width="2"/>
-          <circle cx="32" cy="16" r="2.2" fill="#38bdf8"/>
           <path d="M8 58 H56" stroke="#64748b" stroke-width="2"/>
         </svg>
       </span>
@@ -116,281 +68,250 @@
       <span id="desk-lamp" class="lamp waiting"></span>
     </h1>
   </header>
-  <button class='btn-header-refresh' type='button' onclick='refreshDesk()'><span class='icon-spin'>🔄</span> Refresh</button>
-  <div class='macro-bar'>
-    <div>WTI Oil: <span class='macro-val' id='macro-oil'>$103.55 (+7.81%)</span></div>
-    <div>10Y Yield: <span class='macro-val' id='macro-yield'>4.94%</span></div>
-    <div>Tech/QQQ: <span class='macro-val' id='macro-tech'>$741.47 (-1.06%)</span></div>
-    <div>1-Hr Accuracy: <span class='macro-val' id='macro-accuracy' style='color:#10b981;'>67.8% (40W / 19L)</span>
-      <span class='badge-timestamp' id='macro-timestamp'>--:--:-- CDT</span></div>
+  <button class="btn-header-refresh" type="button" onclick="refreshDesk()">Refresh</button>
+  <div class="macro-bar">
+    <div>Your book: <span class="macro-val" id="user-accuracy">--</span></div>
+    <div>WTI Oil: <span class="macro-val" id="macro-oil">--</span></div>
+    <div>10Y Yield: <span class="macro-val" id="macro-yield">--</span></div>
+    <div>Tech/QQQ: <span class="macro-val" id="macro-tech">--</span></div>
+    <div>1-Hr Accuracy: <span class="macro-val" id="macro-accuracy">--</span></div>
   </div>
-  <div class='memory-banner'>
-    <div class='memory-title'>AGENTIC LEARNING STATE & RETROSPECTIVE MEMORY</div>
-    <div id='desk-memory-content' class='memory-text'>[SESSION STANDBY] Active Window: 08:00 - 15:30 CDT.</div>
+  <div class="memory-banner">
+    <div class="memory-title">Agentic Learning State and Retrospective Memory</div>
+    <div id="desk-memory-content">Loading...</div>
   </div>
-  <div class='section-title'>TOP 3 X / FINTWIT TRENDING OPTIONS PLAYS</div>
-  <div class='grid' id='trendingGrid'>
-    <div class='card trending-card' id='card-HOOD' onclick='openDossier("HOOD")'>
-      <span class='badge-rank'>#1 X TRENDING</span>
-      <h2>$HOOD</h2>
-      <div class='badge-signal long'>LONG (SPECULATIVE)</div>
-      <p>Price: <span class='val-price'>$123.73</span></p>
-      <p>Wave Phase: <span class='val-regime' style='color:#a78bfa;'>Wave 1 (Base Accumulation)</span></p>
-      <p>Fib Level: <span class='val-regime'>Extension (100–161.8%)</span></p>
-      <p>Protection: <span class='val-trail'>Target: $125.45</span></p>
-      <p>Options Bias: <span class='val-bias'>Calls (Breakout Expansion)</span></p>
-    </div>
-    <div class='card trending-card' id='card-AMD' onclick='openDossier("AMD")'>
-      <span class='badge-rank'>#2 X TRENDING</span>
-      <h2>$AMD</h2>
-      <div class='badge-signal long'>LONG (SPECULATIVE)</div>
-      <p>Price: <span class='val-price'>$614.83</span></p>
-      <p>Wave Phase: <span class='val-regime' style='color:#a78bfa;'>Wave 1 (Base Accumulation)</span></p>
-      <p>Fib Level: <span class='val-regime'>Extension (100–161.8%)</span></p>
-      <p>Protection: <span class='val-trail'>Target: $621.67</span></p>
-      <p>Options Bias: <span class='val-bias'>Calls (Breakout Expansion)</span></p>
-    </div>
-    <div class='card trending-card' id='card-PSKY' onclick='openDossier("PSKY")'>
-      <span class='badge-rank'>#3 X TRENDING</span>
-      <h2>$PSKY</h2>
-      <div class='badge-signal short'>SHORT (SPECULATIVE)</div>
-      <p>Price: <span class='val-price'>$9.99</span></p>
-      <p>Wave Phase: <span class='val-regime' style='color:#a78bfa;'>Wave 3 Bearish / Wave C</span></p>
-      <p>Fib Level: <span class='val-regime'>Deep Retracement (&lt;61.8%)</span></p>
-      <p>Protection: <span class='val-trail'>Inval: $10.37</span></p>
-      <p>Options Bias: <span class='val-bias'>Puts (Breakdown Trend)</span></p>
-    </div>
-  </div>
-  <div class='section-title'>CORE UNIVERSE (30-MINUTE INTRADAY ENGINE)</div>
-  <main class='grid' id='deskGrid'>
-    <div class='card' id='card-TSLA' onclick='openDossier("TSLA")'>
-      <h2>$TSLA</h2>
-      <div class='badge-signal long'>LONG (SPECULATIVE)</div>
-      <p>Price: <span class='val-price'>$374.97</span></p>
-      <p>Wave Phase: <span class='val-regime' style='color:#a78bfa;'>Wave 1 (Base Accumulation)</span></p>
-      <p>Fib Level: <span class='val-regime'>Extension (100–161.8%)</span></p>
-      <p>Protection: <span class='val-trail'>Target: $378.71</span></p>
-      <p>Options Bias: <span class='val-bias'>Calls (Breakout Expansion)</span></p>
-    </div>
-    <div class='card' id='card-SPCX' onclick='openDossier("SPCX")'>
-      <h2>$SPCX</h2>
-      <div class='badge-signal short'>SHORT (SPECULATIVE)</div>
-      <p>Price: <span class='val-price'>$152.40</span></p>
-      <p>Wave Phase: <span class='val-regime' style='color:#a78bfa;'>Wave 3 Bearish / Wave C</span></p>
-      <p>Fib Level: <span class='val-regime'>Deep Retracement (&lt;61.8%)</span></p>
-      <p>Protection: <span class='val-trail'>Inval: $153.86</span></p>
-      <p>Options Bias: <span class='val-bias'>Puts (Breakdown Trend)</span></p>
-    </div>
-    <div class='card' id='card-NVDA' onclick='openDossier("NVDA")'>
-      <h2>$NVDA</h2>
-      <div class='badge-signal long'>LONG (SPECULATIVE)</div>
-      <p>Price: <span class='val-price'>$226.95</span></p>
-      <p>Wave Phase: <span class='val-regime' style='color:#a78bfa;'>Wave 1 (Base Accumulation)</span></p>
-      <p>Fib Level: <span class='val-regime'>Extension (100–161.8%)</span></p>
-      <p>Protection: <span class='val-trail'>Target: $228.37</span></p>
-      <p>Options Bias: <span class='val-bias'>Calls (Breakout Expansion)</span></p>
-    </div>
-    <div class='card' id='card-AMD' onclick='openDossier("AMD")'>
-      <h2>$AMD</h2>
-      <div class='badge-signal long'>LONG (SPECULATIVE)</div>
-      <p>Price: <span class='val-price'>$614.83</span></p>
-      <p>Wave Phase: <span class='val-regime' style='color:#a78bfa;'>Wave 1 (Base Accumulation)</span></p>
-      <p>Fib Level: <span class='val-regime'>Extension (100–161.8%)</span></p>
-      <p>Protection: <span class='val-trail'>Target: $621.67</span></p>
-      <p>Options Bias: <span class='val-bias'>Calls (Breakout Expansion)</span></p>
-    </div>
-    <div class='card' id='card-NFLX' onclick='openDossier("NFLX")'>
-      <h2>$NFLX</h2>
-      <div class='badge-signal long'>LONG (SPECULATIVE)</div>
-      <p>Price: <span class='val-price'>$73.42</span></p>
-      <p>Wave Phase: <span class='val-regime' style='color:#a78bfa;'>Wave 1 (Base Accumulation)</span></p>
-      <p>Fib Level: <span class='val-regime'>Deep Retracement (&lt;61.8%)</span></p>
-      <p>Protection: <span class='val-trail'>Target: $74.09</span></p>
-      <p>Options Bias: <span class='val-bias'>Calls (Breakout Expansion)</span></p>
-    </div>
-  </main>
-  <div id='agentModal' class='modal-overlay' onclick='closeDossier(event)'>
-    <div class='modal-card' onclick='event.stopPropagation()'>
-      <button class='modal-close' onclick='document.getElementById("agentModal").style.display="none"'>×</button>
-      <div class='desk-header'>
-        <div class='desk-title'><h3 id='dossier-sym'>--</h3><div class='desk-sub' id='dossier-company'>Loading profile...</div></div>
-        <div><div class='desk-sub' style='text-align:right;'>Suggested Action</div><div class='rating-badge' id='dossier-rating'>LONG</div></div>
+  <div class="section-title">Top 3 X / FinTwit Trending Options Plays</div>
+  <div class="grid" id="trendingGrid"></div>
+  <div class="section-title">Core Universe (30-Minute Intraday Engine)</div>
+  <main class="grid" id="deskGrid"></main>
+  <div id="agentModal" class="modal-overlay" onclick="if(event.target.id==='agentModal')this.style.display='none'">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close" type="button" onclick="document.getElementById('agentModal').style.display='none'">x</button>
+      <div style="display:flex;justify-content:space-between">
+        <div><h3 id="dossier-sym">--</h3><div id="dossier-company">--</div></div>
+        <div class="rating-badge" id="dossier-rating">--</div>
       </div>
-      <div class='chart-header-bar'><span id='chart-sub-label'>Intraday 5-Minute Chart</span><span style='color:#38bdf8;'>Extended Feed</span></div>
-      <div class='chart-container-box' id='tv-chart-box'></div>
-      <div class='metric-grid-4'>
-        <div class='metric-box'><label>Current Price</label><div class='val' id='dossier-price'>--</div><div class='sub'>Active Feed</div></div>
-        <div class='metric-box'><label>Price Target</label><div class='val' id='dossier-target'>--</div><div class='sub' id='dossier-upside'>Fib Extension</div></div>
-        <div class='metric-box'><label>Option Horizon</label><div class='val'>Bi-Weekly</div><div class='sub'>10–14 DTE</div></div>
-        <div class='metric-box'><label>Analysis Regime</label><div class='val' id='dossier-regime' style='color:#38bdf8;'>Trending</div><div class='sub'>30M Structure</div></div>
+      <div class="chart-container-box" id="tv-chart-box"></div>
+      <div class="metric-grid-4">
+        <div class="metric-box">Price<div id="dossier-price">--</div></div>
+        <div class="metric-box">Target<div id="dossier-target">--</div><div id="dossier-upside"></div></div>
+        <div class="metric-box">Horizon<div>10-14 DTE</div></div>
+        <div class="metric-box">Regime<div id="dossier-regime">--</div></div>
       </div>
-      <div class='scenario-container'>
-        <div class='scenario-box bull'>
-          <h4 style='color:#10b981;'>BULLISH PLAY [CALL OPTION]</h4>
-          <div class='scenario-row'><span>Entry Trigger:</span> <strong id='bull-trig'>--</strong></div>
-          <div class='scenario-row'><span>Targets (Fib):</span> <strong id='bull-targets'>--</strong></div>
-          <div class='scenario-row'><span>Invalidation:</span> <strong id='bull-inval'>--</strong></div>
-          <div class='scenario-row'><span>Contract:</span> <strong style='color:#10b981;'>0.60 Delta Call</strong></div>
-        </div>
-        <div class='scenario-box bear'>
-          <h4 style='color:#ef4444;'>BEARISH PLAY [PUT OPTION]</h4>
-          <div class='scenario-row'><span>Breakdown:</span> <strong id='bear-trig'>--</strong></div>
-          <div class='scenario-row'><span>Targets (Fib):</span> <strong id='bear-targets'>--</strong></div>
-          <div class='scenario-row'><span>Invalidation:</span> <strong id='bear-inval'>--</strong></div>
-          <div class='scenario-row'><span>Contract:</span> <strong style='color:#ef4444;'>-0.60 Delta Put</strong></div>
-        </div>
+      <div class="scenario-container">
+        <div class="scenario-box bull"><h4 style="color:#10b981">BULL / CALL</h4><p>Trigger <b id="bull-trig">--</b></p><p>Targets <b id="bull-targets">--</b></p><p>Invalidation <b id="bull-inval">--</b></p></div>
+        <div class="scenario-box bear"><h4 style="color:#ef4444">BEAR / PUT</h4><p>Trigger <b id="bear-trig">--</b></p><p>Targets <b id="bear-targets">--</b></p><p>Invalidation <b id="bear-inval">--</b></p></div>
       </div>
-      <div class='desk-view-box' id='dossier-deskview'>Generating thesis...</div>
-      <div class='bottom-layout'>
-        <div>
-          <label style='font-size:11px; color:#64748b; font-weight:bold; text-transform:uppercase;'>Execution Rules</label>
-          <ul class='thesis-list'>
-            <li>Enter when 5-min candle closes past trigger.</li>
-            <li>Scale 50% at Target 1, trail remainder on 30M EMA21.</li>
-            <li>Hard invalidation on full candle close below stop.</li>
-          </ul>
-        </div>
-        <div>
-          <label style='font-size:11px; color:#64748b; font-weight:bold; text-transform:uppercase;'>Liquidity Pivots</label>
-          <div class='level-pills'>
-            <span class='pill' id='lvl-s2'>S2: --</span>
-            <span class='pill' id='lvl-s1'>S1: --</span>
-            <span class='pill' id='lvl-pivot'>P: --</span>
-            <span class='pill' id='lvl-r1'>R1: --</span>
-          </div>
-          <div style='margin-top:14px;'>
-            <label style='font-size:11px; color:#64748b; font-weight:bold; text-transform:uppercase;'>News Catalyst</label>
-            <p id='dossier-news' style='font-size:12px; color:#cbd5e1; margin-top:4px;'>Analyzing...</p>
-          </div>
-        </div>
-      </div>
-      <div class='indicator-panel'>
-        <h4>Feed indicators</h4>
-        <div class='indicator-row'>
-          <div class='ind-card'><div class='k'>Quote feed</div><div class='v'><span id='ind-feed-lamp' class='lamp waiting'></span><span id='ind-feed-text'>WAITING</span></div></div>
-          <div class='ind-card'><div class='k'>Session window</div><div class='v'><span id='ind-sess-lamp' class='lamp waiting'></span><span id='ind-sess-text'>WAITING</span></div></div>
-          <div class='ind-card'><div class='k'>Signal book</div><div class='v'><span id='ind-sig-lamp' class='lamp waiting'></span><span id='ind-sig-text'>WAITING</span></div></div>
-        </div>
+      <div class="desk-view-box" id="dossier-deskview">--</div>
+      <div><span class="pill" id="lvl-s2">S2</span><span class="pill" id="lvl-s1">S1</span><span class="pill" id="lvl-pivot">P</span><span class="pill" id="lvl-r1">R1</span></div>
+      <p id="dossier-news"></p>
+      <div class="indicator-row">
+        <div class="ind-card">Quote <span id="ind-feed-lamp" class="lamp"></span> <span id="ind-feed-text">WAIT</span></div>
+        <div class="ind-card">Session <span id="ind-sess-lamp" class="lamp"></span> <span id="ind-sess-text">WAIT</span></div>
+        <div class="ind-card">Signal <span id="ind-sig-lamp" class="lamp"></span> <span id="ind-sig-text">WAIT</span></div>
       </div>
     </div>
   </div>
   <script>
-    const API_BASE = '';
-    function setLamp(el, mode) { if (el) el.className = 'lamp ' + mode; }
-    function setDeskLamp(mode) { setLamp(document.getElementById('desk-lamp'), mode); }
-    function setInd(idLamp, idText, mode, label) {
-      setLamp(document.getElementById(idLamp), mode);
-      const t = document.getElementById(idText);
-      if (t) t.textContent = label;
+    const API_BASE = "";
+    const CORE = ["TSLA", "SPCX", "NVDA", "AMD", "NFLX"];
+    let lastPayload = null;
+    let dossierReq = 0;
+    function clean(s) { return String(s || "").replace("$", "").toUpperCase(); }
+    function setLamp(id, m) { const el = document.getElementById(id); if (el) el.className = "lamp " + m; }
+    function sigClass(t) {
+      t = String(t || "").toUpperCase();
+      if (/LONG|CALL|OVERWEIGHT/.test(t)) return "long";
+      if (/SHORT|PUT|UNDERWEIGHT/.test(t)) return "short";
+      return "neutral";
     }
-    function updateClock() {
-      let el = document.getElementById('macro-timestamp');
-      if(el) el.innerText = new Date().toLocaleTimeString() + ' CDT';
+    function cardHtml(sym, rank, bias, price, change, trending, wave, fib) {
+      const closed = lastPayload && lastPayload.session_active === false && !trending;
+      const px = price || (closed ? "Market closed" : "--");
+      const chg = change || (closed ? "Market closed" : "--");
+      return '<div class="card ' + (trending ? "trending-card" : "") + '" onclick="openDossier(\'' + sym + '\')">'
+        + (rank ? '<span class="badge-rank">' + rank + "</span>" : "")
+        + "<h2>$" + sym + '</h2><div class="badge-signal ' + sigClass(bias) + '">' + (bias || (closed ? "MARKET CLOSED" : "HOLD")) + "</div>"
+        + '<p>Price: <span class="val-price">' + px + "</span></p>"
+        + '<p>Change: <span class="val">' + chg + "</span></p>"
+        + '<p>Wave Phase: <span class="val">' + (wave || "See dossier") + "</span></p>"
+        + '<p>Fib Level: <span class="val">' + (fib || "See dossier") + "</span></p>"
+        + '<p>Options Bias: <span class="val-bias">' + (bias || "--") + "</span></p>"
+        + '<div class="trade-marks" onclick="event.stopPropagation()">'
+        +'<button type="button" class="mark-btn" data-mark="yes" onclick="setTradeMark(\'' + sym + '\',\'yes\')">&#10003; Took</button>'
+        +'<button type="button" class="mark-btn" data-mark="no" onclick="setTradeMark(\'' + sym + '\',\'no\')">&#10005; Skip</button>'
+        + "</div></div>";
     }
-    updateClock(); setInterval(updateClock, 1000);
-    function renderTvChart(symbol) {
-      let box = document.getElementById('tv-chart-box');
-      box.innerHTML = '';
-      let div = document.createElement('div');
-      div.id = 'tv_container'; div.style.width = '100%'; div.style.height = '100%';
-      box.appendChild(div);
-      if(typeof TradingView !== 'undefined') {
+    function biasKey(bias) {
+      const u = String(bias || "").toUpperCase();
+      if (/LONG|CALL|OVERWEIGHT/.test(u)) return "LONG";
+      if (/SHORT|PUT|UNDERWEIGHT/.test(u)) return "SHORT";
+      return "HOLD";
+    }
+    function markStoreKey(sym) { return "rst_mark_" + sym; }
+    function bookKey() { return "rst_user_book"; }
+    function loadBook() { try { return JSON.parse(localStorage.getItem(bookKey()) || "[]"); } catch (e) { return []; } }
+    function saveBook(b) { localStorage.setItem(bookKey(), JSON.stringify(b)); }
+    function tilePrice(sym) {
+      const t = (lastPayload && lastPayload.tickers && lastPayload.tickers[sym]) || {};
+      if (t.price != null) return Number(t.price);
+      return null;
+    }
+    function currentBiasFor(sym) {
+      const t = (lastPayload && lastPayload.tickers && lastPayload.tickers[sym]) || {};
+      const trend = (lastPayload && lastPayload.trending) || [];
+      const tr = trend.find(function (i) { return clean(i.symbol) === sym; });
+      return biasKey(t.bias || (tr && tr.bias) || "HOLD");
+    }
+    function userStats() {
+      const done = loadBook().filter(function (r) { return r.result === "WIN" || r.result === "LOSS"; });
+      const wins = done.filter(function (r) { return r.result === "WIN"; }).length;
+      const losses = done.filter(function (r) { return r.result === "LOSS"; }).length;
+      const tot = wins + losses;
+      return tot ? ((wins / tot * 100).toFixed(1) + "% (" + wins + "W / " + losses + "L)") : "No closed user trades";
+    }
+    function settleUserBook() {
+      const book = loadBook();
+      book.forEach(function (r) {
+        if (r.result) return;
+        if (r.choice !== "yes") return;
+        const px = tilePrice(r.sym);
+        if (px == null) return;
+        if (r.bias === "LONG" && px > r.entry) r.result = "WIN";
+        else if (r.bias === "SHORT" && px < r.entry) r.result = "WIN";
+        else if (r.bias === "LONG" && px < r.entry) r.result = "LOSS";
+        else if (r.bias === "SHORT" && px > r.entry) r.result = "LOSS";
+      });
+      saveBook(book);
+      const el = document.getElementById("user-accuracy");
+      if (el) el.innerText = userStats();
+    }
+    function paintMarks() {
+      document.querySelectorAll(".card").forEach(function (card) {
+        const h = card.querySelector("h2");
+        if (!h) return;
+        const sym = clean(h.textContent);
+        const now = currentBiasFor(sym);
+        const saved = JSON.parse(localStorage.getItem(markStoreKey(sym)) || "null");
+        if (!saved || saved.bias !== now) localStorage.removeItem(markStoreKey(sym));
+        const state = JSON.parse(localStorage.getItem(markStoreKey(sym)) || "null");
+        card.querySelectorAll(".mark-btn").forEach(function (btn) {
+          btn.classList.remove("on-yes", "on-no");
+          if (state && state.choice === btn.getAttribute("data-mark")) {
+            btn.classList.add(state.choice === "yes" ? "on-yes" : "on-no");
+          }
+        });
+      });
+      settleUserBook();
+    }
+    function setTradeMark(sym, choice) {
+      const bias = currentBiasFor(sym);
+      localStorage.setItem(markStoreKey(sym), JSON.stringify({ choice: choice, bias: bias }));
+      const book = loadBook();
+      const open = book.find(function (r) { return r.sym === sym && r.bias === bias && !r.result; });
+      if (choice === "yes") {
+        if (!open) book.push({ sym: sym, bias: bias, choice: "yes", entry: tilePrice(sym), t: Date.now(), result: null });
+      } else {
+        if (open) open.choice = "no";
+        else book.push({ sym: sym, bias: bias, choice: "no", entry: tilePrice(sym), t: Date.now(), result: "SKIP" });
+      }
+      saveBook(book);
+      paintMarks();
+    }
+    function renderTv(symbol) {
+      const box = document.getElementById("tv-chart-box");
+      box.innerHTML = "";
+      const d = document.createElement("div");
+      d.id = "tv_container";
+      d.style.width = "100%";
+      d.style.height = "100%";
+      box.appendChild(d);
+      if (typeof TradingView !== "undefined") {
         new TradingView.widget({
-          autosize: true, symbol: symbol, interval: '5', timezone: 'America/Chicago',
-          theme: 'dark', style: '1', locale: 'en', toolbar_bg: '#0b1329',
-          enable_publishing: false, hide_side_toolbar: true, allow_symbol_change: false,
-          extended_hours: true, withdateranges: true, container_id: 'tv_container'
+          autosize: true, symbol: symbol, interval: "5", timezone: "America/Chicago",
+          theme: "dark", style: "1", locale: "en", enable_publishing: false,
+          hide_side_toolbar: true, allow_symbol_change: false, extended_hours: true,
+          container_id: "tv_container"
         });
       }
     }
     async function openDossier(symbol) {
-      document.getElementById('agentModal').style.display = 'flex';
-      document.getElementById('dossier-sym').innerText = '$' + symbol;
-      document.getElementById('chart-sub-label').innerText = symbol + ' - 5-Min Chart';
-      renderTvChart(symbol);
-      setInd('ind-feed-lamp','ind-feed-text','waiting','WAITING');
-      setInd('ind-sess-lamp','ind-sess-text','waiting','WAITING');
-      setInd('ind-sig-lamp','ind-sig-text','waiting','WAITING');
+      symbol = clean(symbol);
+      const req = ++dossierReq;
+      document.getElementById("agentModal").style.display = "flex";
+      document.getElementById("dossier-sym").innerText = "$" + symbol;
+      document.getElementById("dossier-company").innerText = symbol;
+      document.getElementById("dossier-deskview").innerText = "Loading " + symbol + "...";
+      renderTv(symbol);
       try {
-        let res = await fetch(API_BASE + '/api/agent-desk/' + symbol + '?t=' + Date.now());
-        if(res.ok) {
-          let data = await res.json();
-          document.getElementById('dossier-company').innerText = data.company_name || symbol;
-          document.getElementById('dossier-rating').innerText = data.rating || 'ACTIVE';
-          if(data.bias_color) document.getElementById('dossier-rating').style.color = data.bias_color;
-          document.getElementById('dossier-price').innerText = data.premarket_price || '--';
-          document.getElementById('dossier-target').innerText = data.price_target || '--';
-          document.getElementById('dossier-upside').innerText = data.target_upside || '--';
-          document.getElementById('dossier-regime').innerText = data.regime || '--';
-          if(data.bull_leg) { document.getElementById('bull-trig').innerText = data.bull_leg.trigger; document.getElementById('bull-targets').innerText = data.bull_leg.targets; document.getElementById('bull-inval').innerText = data.bull_leg.invalidate; }
-          if(data.bear_leg) { document.getElementById('bear-trig').innerText = data.bear_leg.trigger; document.getElementById('bear-targets').innerText = data.bear_leg.targets; document.getElementById('bear-inval').innerText = data.bear_leg.invalidate; }
-          if(data.desk_view) document.getElementById('dossier-deskview').innerText = data.desk_view;
-          if(data.catalyst_headline) document.getElementById('dossier-news').innerText = data.catalyst_headline;
-          if(data.key_levels) {
-            document.getElementById('lvl-s2').innerText = 'S2: ' + data.key_levels.s2;
-            document.getElementById('lvl-s1').innerText = 'S1: ' + data.key_levels.s1;
-            document.getElementById('lvl-pivot').innerText = 'P: ' + data.key_levels.pmh;
-            document.getElementById('lvl-r1').innerText = 'R1: ' + data.key_levels.r1;
-          }
-          setInd('ind-feed-lamp','ind-feed-text','online','ONLINE');
-          const sessOn = !!(data.session_active);
-          setInd('ind-sess-lamp','ind-sess-text', sessOn ? 'online' : 'waiting', sessOn ? 'LIVE' : 'STANDBY');
-          const rating = (data.rating || '').toUpperCase();
-          const sigMode = rating.includes('LONG') || rating.includes('SHORT') ? 'online' : (rating ? 'waiting' : 'offline');
-          setInd('ind-sig-lamp','ind-sig-text', sigMode, rating || 'NO SIGNAL');
-          setDeskLamp('online');
-        } else {
-          setInd('ind-feed-lamp','ind-feed-text','offline','OFFLINE');
-          setInd('ind-sess-lamp','ind-sess-text','offline','OFFLINE');
-          setInd('ind-sig-lamp','ind-sig-text','offline','OFFLINE');
+        const res = await fetch(API_BASE + "/api/agent-desk/" + symbol + "?t=" + Date.now());
+        const data = await res.json();
+        if (req !== dossierReq) return;
+        if (data.symbol && clean(data.symbol) !== symbol) return;
+        document.getElementById("dossier-company").innerText = data.company_name || symbol;
+        document.getElementById("dossier-rating").innerText = data.rating || "--";
+        if (data.bias_color) document.getElementById("dossier-rating").style.color = data.bias_color;
+        document.getElementById("dossier-price").innerText = data.premarket_price || "--";
+        document.getElementById("dossier-target").innerText = data.price_target || "--";
+        document.getElementById("dossier-upside").innerText = data.target_upside || "";
+        document.getElementById("dossier-regime").innerText = data.regime || "--";
+        if (data.bull_leg) {
+          document.getElementById("bull-trig").innerText = data.bull_leg.trigger;
+          document.getElementById("bull-targets").innerText = data.bull_leg.targets;
+          document.getElementById("bull-inval").innerText = data.bull_leg.invalidate;
         }
-      } catch(e) {
-        setInd('ind-feed-lamp','ind-feed-text','offline','OFFLINE');
-        setInd('ind-sess-lamp','ind-sess-text','offline','OFFLINE');
-        setInd('ind-sig-lamp','ind-sig-text','offline','OFFLINE');
-        setDeskLamp('offline');
+        if (data.bear_leg) {
+          document.getElementById("bear-trig").innerText = data.bear_leg.trigger;
+          document.getElementById("bear-targets").innerText = data.bear_leg.targets;
+          document.getElementById("bear-inval").innerText = data.bear_leg.invalidate;
+        }
+        document.getElementById("dossier-deskview").innerText = data.desk_view || "--";
+        document.getElementById("dossier-news").innerText = data.catalyst_headline || "";
+        if (data.key_levels) {
+          document.getElementById("lvl-s2").innerText = "S2 " + data.key_levels.s2;
+          document.getElementById("lvl-s1").innerText = "S1 " + data.key_levels.s1;
+          document.getElementById("lvl-pivot").innerText = "P " + data.key_levels.pmh;
+          document.getElementById("lvl-r1").innerText = "R1 " + data.key_levels.r1;
+        }
+        setLamp("ind-feed-lamp", "online");
+        document.getElementById("ind-feed-text").innerText = "ONLINE";
+        const live = !!(lastPayload && lastPayload.session_active);
+        setLamp("ind-sess-lamp", live ? "online" : "waiting");
+        document.getElementById("ind-sess-text").innerText = live ? "LIVE" : "STANDBY";
+        setLamp("ind-sig-lamp", "online");
+        document.getElementById("ind-sig-text").innerText = data.rating || "--";
+        setLamp("desk-lamp", "online");
+      } catch (e) {
+        console.error(e);
+        setLamp("desk-lamp", "offline");
       }
     }
-    function closeDossier(e) { if(e.target.id === 'agentModal') document.getElementById('agentModal').style.display = 'none'; }
     async function refreshDesk() {
-      let btn = document.querySelector('.btn-header-refresh');
-      if(btn) btn.classList.add('spinning');
       try {
-        setDeskLamp('waiting');
-        let res = await fetch(API_BASE + '/api/refresh?t=' + Date.now());
-        let data = await res.json();
-        if(data.macro) {
-          if(document.getElementById('macro-oil')) document.getElementById('macro-oil').innerText = data.macro['WTI Crude'] || '--';
-          if(document.getElementById('macro-yield')) document.getElementById('macro-yield').innerText = data.macro['10Y Yield'] || '--';
-          if(document.getElementById('macro-tech')) document.getElementById('macro-tech').innerText = data.macro['Tech/QQQ'] || '--';
-        }
-        if(data.stats && document.getElementById('macro-accuracy')) document.getElementById('macro-accuracy').innerText = data.stats.win_rate + ' (' + data.stats.wins + 'W / ' + data.stats.losses + 'L)';
-        if(data.memory && document.getElementById('desk-memory-content')) document.getElementById('desk-memory-content').innerText = data.memory;
-        let updateCards = (list) => {
-          if(!list) return;
-          list.forEach(c => {
-            let el = document.getElementById('card-' + c.symbol);
-            if(!el) return;
-            let b = el.querySelector('.badge-signal');
-            if(b) {
-              b.innerText = c.recommendation;
-              let cls = 'neutral';
-              if(c.recommendation.includes('LONG')) cls = 'long';
-              else if(c.recommendation.includes('REVERSAL')) cls = 'reversal';
-              else if(c.recommendation.includes('SHORT')) cls = 'short';
-              b.className = 'badge-signal ' + cls;
-            }
-            let p = el.querySelector('.val-price'); if(p) p.innerText = c.price;
-            let regs = el.querySelectorAll('.val-regime'); if(regs.length >= 2) { regs[0].innerText = c.elliott_phase; regs[1].innerText = c.fib_level; }
-            let tr = el.querySelector('.val-trail'); if(tr) tr.innerText = c.trailing_target;
-            let bi = el.querySelector('.val-bias'); if(bi) bi.innerText = c.options_bias;
-          });
-        };
-        updateCards(data.cards); updateCards(data.trending_cards);
-        setDeskLamp('online');
-      } catch(e) { setDeskLamp('offline'); }
-      finally { if(btn) setTimeout(() => btn.classList.remove('spinning'), 400); }
+        const res = await fetch(API_BASE + "/api/refresh?t=" + Date.now());
+        const data = await res.json();
+        lastPayload = data;
+        const m = data.macro || {};
+        document.getElementById("macro-oil").innerText = m["WTI Crude"] || "--";
+        document.getElementById("macro-yield").innerText = m["10Y Yield"] || "--";
+        document.getElementById("macro-tech").innerText = m["Tech/QQQ"] || "--";
+        if (data.stats) document.getElementById("macro-accuracy").innerText = data.stats.win_rate + " (" + data.stats.wins + "W / " + data.stats.losses + "L)";
+        document.getElementById("desk-memory-content").innerText = (data.session_active ? "[SESSION LIVE] " : "[SESSION STANDBY] ") + (data.active_window || "07:30 - 16:00 CDT");
+        document.getElementById("trendingGrid").innerHTML = (data.trending || []).slice(0, 3).map(function (i) {
+          return cardHtml(clean(i.symbol), i.rank, i.bias, i.price || "--", i.sentiment || "", true);
+        }).join("");
+        document.getElementById("deskGrid").innerHTML = CORE.map(function (sym) {
+          const r = (data.tickers && data.tickers[sym]) || {};
+          return cardHtml(sym, "", r.bias || "HOLD", r.price != null ? ("$" + r.price) : "", r.change || "", false, r.elliott_phase, r.fib_level);
+        }).join("");
+        paintMarks();
+        setLamp("desk-lamp", data.session_active ? "online" : "waiting");
+      } catch (e) {
+        console.error(e);
+        setLamp("desk-lamp", "offline");
+      }
     }
+    refreshDesk();
     setInterval(refreshDesk, 10000);
   </script>
 </body>

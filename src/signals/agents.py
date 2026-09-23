@@ -6,7 +6,7 @@ import numpy as np
 from datetime import datetime
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
-MODEL_NAME = "qwen2.5-coder:7b"
+MODEL_NAME = "rst-desk"
 
 # Absolute path to retrospective memory
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -22,9 +22,29 @@ def get_latest_agent_memory() -> str:
             pass
     return "No prior retrospective memory recorded."
 
+def get_symbol_lessons(symbol: str, limit: int = 8) -> str:
+    path = os.path.join(BASE_DIR, "eval_history.json")
+    if not os.path.exists(path):
+        return f"No completed program grades for {symbol}."
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            hist = json.load(f)
+    except Exception:
+        return "eval_history.json unreadable."
+    rows = [r for r in hist.get("completed", []) if str(r.get("symbol", "")).upper() == symbol.upper()]
+    rows = rows[-limit:]
+    if not rows:
+        return f"No completed program grades for {symbol}."
+    lines = []
+    for r in rows:
+        lines.append(
+            f"- {r.get('time','')} {symbol} {r.get('bias','')} "
+            f"entry={r.get('entry')} exit={r.get('exit')} d={r.get('delta_pct')} -> {r.get('outcome')}"
+        )
+    return "\n".join(lines)    
 def generate_ollama_thesis(symbol: str, company: str, price: float, rating: str, headline: str) -> str:
     """Queries local Ollama instance incorporating retrospective memory."""
-    memory_context = get_latest_agent_memory()
+    memory_context = get_symbol_lessons(symbol)
 
     prompt = f"""You are an equity options quantitative desk risk officer analyzing ${symbol} ({company}).
 DO NOT confuse the ticker with software or acronyms.
@@ -148,13 +168,13 @@ def run_multi_agent_assessment(symbol: str, df: pd.DataFrame, refs: dict, cataly
         "reference_level": f"${pdh:,.2f}",
         "bull_leg": {
             "trigger": f"${bull_trig:,.2f}",
-            "targets": f"\({bull_t1:,.2f} /\){bull_t2:,.2f}",
+            "targets": f"({bull_t1:,.2f} / {bull_t2:,.2f}",
             "invalidate": f"${bull_inval:,.2f}",
             "rr": f"{bull_rr:.2f} planned"
         },
         "bear_leg": {
             "trigger": f"${bear_trig:,.2f}",
-            "targets": f"\({bear_t1:,.2f} /\){bear_t2:,.2f}",
+            "targets": f"({bear_t1:,.2f} / {bear_t2:,.2f}",
             "invalidate": f"${bear_inval:,.2f}",
             "rr": f"{bear_rr:.2f} planned"
         },
