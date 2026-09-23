@@ -11,7 +11,19 @@ CENTRAL_TZ = ZoneInfo("America/Chicago")
 class CandleManager:
     def __init__(self, tickers: list):
         self.tickers = tickers
-
+    def fetch_ew_hour_bars(self, symbol: str) -> pd.DataFrame:
+        """1-hour bars from 2026-08-28 through now for EW / Fib on tiles."""
+        try:
+            ticker = yf.Ticker(symbol)
+            df = ticker.history(start="2026-08-28", interval="1h", prepost=False)
+            if df is None or df.empty:
+                return pd.DataFrame()
+            if df.index.tz is not None:
+                df.index = df.index.tz_convert(CENTRAL_TZ)
+            return df
+        except Exception as e:
+            print(f"[EW 1H Error] {symbol}: {e}")
+            return pd.DataFrame()
     def fetch_intraday_data(self, symbol: str) -> pd.DataFrame:
         """Fetch 30-minute candles and strictly filter out overnight 'dead air'."""
         try:

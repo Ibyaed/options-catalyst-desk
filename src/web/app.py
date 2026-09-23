@@ -141,13 +141,24 @@ async def market_scanner_loop():
                     symbol = item.get("symbol", item.get("ticker", "TBD")).upper()
                     if not symbol.startswith("$"):
                         symbol = f"${symbol}"
+                    last_px = "--"
+                    try:
+                        t = yf.Ticker(symbol.replace("$", ""))
+                        hist = t.history(period="1d", interval="1m")
+                        if hist is None or hist.empty:
+                            hist = t.history(period="5d", interval="1d")
+                        if hist is not None and not hist.empty and "Close" in hist:
+                            last_px = f"${float(hist['Close'].iloc[-1]):.2f}"
+                    except Exception:
+                        last_px = "--"
                     top3.append({
                         "symbol": symbol,
                         "rank": f"#{idx + 1} TRENDING",
                         "bias": item.get("bias", "SHORT (SPECULATIVE)"),
-                        "sentiment": item.get("sentiment", "Bearish Flow")
+                        "sentiment": item.get("sentiment", "Bearish Flow"),
+                        "price": last_px
                     })
-                LATEST_DATA["trending"] = top3
+                    LATEST_DATA["trending"] = top3
         except Exception as e:
             print(f"[Trending Scanner Error]: {e}")
 
@@ -164,24 +175,30 @@ async def market_scanner_loop():
             for sym in TRACKED_TICKERS:
                 try:
                     df = await asyncio.to_thread(manager.fetch_intraday_data, sym)
+                    ew_df = await asyncio.to_thread(manager.fetch_ew_hour_bars, sym)
                     if df is not None and not df.empty:
                         last_price = float(df["Close"].iloc[-1])
                         prev_close = float(df["Open"].iloc[0])
                         chg_pct = ((last_price - prev_close) / prev_close) * 100
-                        
-                        refs = manager.get_reference_levels(sym)
-                        regime = detect_regime_and_bias(df, refs)
 
+                        refs = manager.get_reference_levels(sym)
+                        wave_src = ew_df if ew_df is not None and not ew_df.empty else df
+                        regime = detect_regime_and_bias(wave_src, refs)
                         LATEST_DATA["tickers"][sym] = {
                             "price": round(last_price, 2),
                             "change": f"{chg_pct:+.2f}%",
                             "bias": regime.get("bias", "NEUTRAL") if isinstance(regime, dict) else "NEUTRAL"
                         }
+                        bias_txt = LATEST_DATA["tickers"][sym]["bias"]
+                        evaluator.record_recommendation(sym, last_price, bias_txt, last_price * 1.008, last_price * 0.992)
                 except Exception as e:
                     print(f"[Scanner Error] {sym}: {e}")
 
-        await asyncio.sleep(60)
+            live_map = {s: d.get("price", 0.0) for s, d in LATEST_DATA["tickers"].items()}
+            evaluator.evaluate_outcomes(live_map)
+            LATEST_DATA["stats"] = evaluator.get_performance_stats()
 
+        await asyncio.sleep(60)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     macro_task = asyncio.create_task(macro_scanner_loop())

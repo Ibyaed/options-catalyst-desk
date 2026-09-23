@@ -116,3 +116,11 @@ class HourlyEvaluator:
             "win_rate": win_rate,
             "recent": done[-5:]
         }
+    def get_performance_stats(self):
+        s = self.get_stats()
+        return {
+            "win_rate": s.get("win_rate", "N/A"),
+            "wins": s.get("wins", 0),
+            "losses": s.get("losses", 0),
+            "total": s.get("total", 0),
+        }

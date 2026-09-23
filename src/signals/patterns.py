@@ -18,87 +18,88 @@ def calculate_fib_matrix(high: float, low: float) -> dict:
     }
 
 def detect_regime_and_bias(df: pd.DataFrame, refs: dict) -> dict:
-    if df.empty or len(df) < 15:
+    if df is None or df.empty or len(df) < 15:
         return {
             "current_price": 0.0,
-            "recommendation": "NEUTRAL / WAIT",
-            "elliott_phase": "Wave 1 (Base Accumulation)",
-            "fib_level": "Golden Pocket (50–61.8%)",
-            "trailing_target": "Target: $0.00",
-            "options_bias": "Calls (Breakout Expansion)",
+            "recommendation": "HOLD",
+            "bias": "HOLD",
+            "elliott_phase": "Wave 1 / Wave A (no projection)",
+            "fib_level": "Waiting on first impulse",
+            "trailing_target": "No target until W1/A completes",
+            "options_bias": "Stay Out",
         }
 
-    close = df["Close"].values
-    highs = df["High"].values
-    lows = df["Low"].values
-    current_price = round(float(close[-1]), 2)
+    close = df["Close"].astype(float)
+    high = df["High"].astype(float)
+    low = df["Low"].astype(float)
+    price = float(close.iloc[-1])
 
-    # 30-minute EMAs
-    ema8 = pd.Series(close).ewm(span=8).mean().iloc[-1]
-    ema21 = pd.Series(close).ewm(span=21).mean().iloc[-1]
-    ema55 = pd.Series(close).ewm(span=55).mean().iloc[-1]
+    look = len(df)
+    w_high = float(high.iloc[-look:].max())
+    w_low = float(low.iloc[-look:].min())
+    span = w_high - w_low
+    if span <= 0:
+        span = max(price * 0.01, 0.01)
 
-    lookback = min(40, len(df))
-    swing_high = float(np.max(highs[-lookback:]))
-    swing_low = float(np.min(lows[-lookback:]))
-    fibs = calculate_fib_matrix(swing_high, swing_low)
+    # Treat last swing as the completed impulse (Wave 1 if up, Wave A if down).
+    up_impulse = price >= (w_low + 0.5 * span)
+    impulse = span  # Wave 1 or Wave A length
 
-    # Calculate Fib bracket wording
-    fib_50 = fibs.get("50.0%", swing_low)
-    fib_618 = fibs.get("61.8%", swing_high)
-    diff = swing_high - swing_low
-
-    if diff > 0:
-        ratio = (current_price - swing_low) / diff
-        if 0.45 <= ratio <= 0.68:
-            fib_level = "Golden Pocket (50–61.8%)"
-        elif ratio < 0.45:
-            fib_level = "Deep Retracement (<61.8%)"
+    # Retrace from the impulse extreme
+    if up_impulse:
+        retrace_pct = (w_high - price) / impulse
+        # W2/W4 buy pocket 50-78.6%; W3/W5 if price is extending through high
+        if price > w_high:
+            rec = "LONG (SPECULATIVE)"
+            phase = "Wave 3 / Wave 5 Extension"
+            fib = "Extension 100-161.8% of Wave 1 from end of W2"
+            target = w_high + 1.618 * impulse
+            bias = "Calls (Breakout Expansion)"
+        elif 0.50 <= retrace_pct <= 0.786:
+            rec = "LONG (SPECULATIVE)"
+            phase = "Wave 2 / Wave 4 Retracement"
+            fib = "Retrace 50-78.6% of Wave 1"
+            target = w_high + 1.00 * impulse
+            bias = "Calls (Retrace Pocket)"
+        elif retrace_pct > 0.786:
+            rec = "HOLD"
+            phase = "Wave 2 invalid / possible Wave A"
+            fib = "Broke 78.6% of Wave 1"
+            target = price
+            bias = "Stay Out / Iron Condor"
         else:
-            fib_level = "Extension (100–161.8%)"
+            rec = "HOLD"
+            phase = "Wave 1 (no projection)"
+            fib = "Impulse still forming"
+            target = w_high
+            bias = "Stay Out"
     else:
-        fib_level = "Golden Pocket (50–61.8%)"
-
-    # 30-minute ATR for target/inval distance
-    tr = np.maximum(
-        highs[1:] - lows[1:],
-        np.maximum(abs(highs[1:] - close[:-1]), abs(lows[1:] - close[:-1]))
-    )
-    atr = float(np.mean(tr[-14:])) if len(tr) >= 14 else 1.20
-
-    # Trend & Elliott Wave phase classification matching the previous UI
-    if current_price >= ema21 and ema8 >= ema21:
-        recommendation = "LONG (SPECULATIVE)"
-        elliott_phase = "Wave 1 (Base Accumulation)"
-        target_val = round(current_price + (1.5 * atr), 2)
-        trailing_target = f"Target: ${target_val:,.2f}"
-        options_bias = "Calls (Breakout Expansion)"
-    elif current_price < ema55 and ema8 < ema21:
-        # Check for exhaustion bounce vs trending breakdown
-        if current_price <= swing_low + (0.3 * atr):
-            recommendation = "COVER / BUY REVERSAL"
-            elliott_phase = "Wave C (Exhaustion Low)"
-            inval_val = round(current_price - (0.8 * atr), 2)
-            trailing_target = f"Inval: ${inval_val:,.2f}"
-            options_bias = "Stay Out / Iron Condor"
+        retrace_pct = (price - w_low) / impulse
+        if price < w_low:
+            rec = "SHORT (SPECULATIVE)"
+            phase = "Wave C Extension"
+            fib = "Extension 61.8-161.8% of Wave A from end of B"
+            target = w_low - 1.618 * impulse
+            bias = "Puts (Breakdown Trend)"
+        elif 0.50 <= retrace_pct <= 0.786:
+            rec = "SHORT (SPECULATIVE)"
+            phase = "Wave B Retracement"
+            fib = "Retrace 50-78.6% of Wave A"
+            target = w_low - 1.00 * impulse
+            bias = "Puts (Retrace Pocket)"
         else:
-            recommendation = "SHORT (SPECULATIVE)"
-            elliott_phase = "Wave 3 Bearish / Wave C"
-            inval_val = round(current_price + (1.2 * atr), 2)
-            trailing_target = f"Inval: ${inval_val:,.2f}"
-            options_bias = "Puts (Breakdown Trend)"
-    else:
-        recommendation = "COVER / BUY REVERSAL"
-        elliott_phase = "Wave 1 (Base Accumulation)"
-        inval_val = round(current_price - atr, 2)
-        trailing_target = f"Inval: ${inval_val:,.2f}"
-        options_bias = "Calls (Breakout Expansion)"
+            rec = "HOLD"
+            phase = "Wave A (no projection)"
+            fib = "Corrective impulse still forming"
+            target = w_low
+            bias = "Stay Out"
 
     return {
-        "current_price": current_price,
-        "recommendation": recommendation,
-        "elliott_phase": elliott_phase,
-        "fib_level": fib_level,
-        "trailing_target": trailing_target,
-        "options_bias": options_bias,
+        "current_price": round(price, 2),
+        "recommendation": rec,
+        "bias": rec,
+        "elliott_phase": phase,
+        "fib_level": fib,
+        "trailing_target": f"Target: ${target:,.2f}",
+        "options_bias": bias,
     }
