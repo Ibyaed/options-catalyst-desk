@@ -52,7 +52,23 @@
     .ind-card { background: #0f172a; border: 1px solid #1e293b; padding: 12px; border-radius: 8px; }
     .rating-badge { font-size: 22px; font-weight: bold; color: #10b981; }
     .pill { background: #1e293b; color: #38bdf8; padding: 4px 8px; border-radius: 4px; margin-right: 6px; font-size: 11px; }
-  </style>
+    @media (max-width: 700px) {
+      body { padding: 12px; }
+      h1 { font-size: 18px; gap: 8px; }
+      .derrick-sticker { width: 28px; height: 28px; }
+      .derrick-sticker svg { width: 22px; height: 22px; }
+      .lamp { width: 8px; height: 8px; }
+      .btn-header-refresh { top: 10px; right: 10px; padding: 6px 10px; font-size: 12px; }
+      .macro-bar { gap: 10px; padding: 10px 12px; font-size: 12px; }
+      .card { padding: 14px; }
+      .card h2 { font-size: 16px; }
+      .mark-btn { min-width: 56px; height: 28px; font-size: 11px; padding: 0 6px; }
+      .modal-card { padding: 14px; }
+      .chart-container-box { height: 240px; }
+      .metric-grid-4, .scenario-container, .indicator-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }  </style>
 </head>
 <body>
   <header>
